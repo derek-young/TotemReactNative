@@ -2,8 +2,9 @@ import React from 'react';
 import { Image, Text, View } from 'react-native';
 import styles from './styles';
 import Nav from './containers/Nav/Nav';
+import MiniNav from './containers/Nav/MiniNav';
 import Map from './components/MapView';
-import Friends from './components/FriendList';
+import Rabble from './components/FriendList';
 import VenueSchedule from './components/VenueSchedule';
 
 export default class App extends React.Component {
@@ -13,24 +14,32 @@ export default class App extends React.Component {
       selected: 5,
       views: [
         <Map />,
-        <Friends />,
+        <Rabble />,
         <View><Text>User Schedule Holder</Text></View>,
         <VenueSchedule />,
         <View><Text>Emergency Info Holder</Text></View>,
-        <Nav updateSelected={this.updateSelected.bind(this)}/>
+        <Nav swapView={this.swapView.bind(this)}/>
       ]
     }
   }
 
   render() {
+    if (this.state.selected === 5) {
+      return (
+        <View style={styles.container}>
+          {this.state.views[this.state.selected]}
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         {this.state.views[this.state.selected]}
+        <MiniNav swapView={this.swapView.bind(this)}/>
       </View>
     );
   }
 
-  updateSelected(index) {
+  swapView(index) {
     this.setState({
       selected: index
     });

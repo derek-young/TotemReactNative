@@ -8,10 +8,10 @@ export default class Nav extends Component {
     this.state = {
       selectedTab: 'welcome',
       menuItems: [
-        'Home (Map View)',
-        'Friends',
-        'Your Schedule',
-        'Venue Schedule',
+        'Map',
+        'Rabble',
+        'Personal Agenda',
+        'Schedule/Set List',
         'Emergency Info'
       ]
     };
@@ -25,7 +25,7 @@ export default class Nav extends Component {
             <Button
               style={styles.button}
               onPress={() => {
-                this.props.updateSelected(index);
+                this.props.swapView(index);
               }}
               title={item}
               color="#1cafff"
