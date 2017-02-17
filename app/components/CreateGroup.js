@@ -7,4 +7,4 @@ const CreateGroup = () => (
   </View>
 );
 
-export defualt CreateGroup;
+export default CreateGroup;

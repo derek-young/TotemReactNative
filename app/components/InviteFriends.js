@@ -7,4 +7,4 @@ const InviteFriends = () => (
   </View>
 );
 
-export defualt InviteFriends;
+export default InviteFriends;

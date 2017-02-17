@@ -7,4 +7,4 @@ const FriendList = () => (
   </View>
 );
 
-export defualt FriendList;
+export default FriendList;
