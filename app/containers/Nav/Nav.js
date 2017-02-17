@@ -1,25 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, Button, Text, View } from 'react-native';
-// import styles from './NavStyles';
-const styles = StyleSheet.create({
-  button: {
-    paddingTop: 100,
-    borderBottomColor: '#000',
-    borderBottomWidth: 1
-  }
-});
+import styles from './NavStyles';
 
-export default class NavigatorIOSApp extends Component {
+export default class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedTab: 'welcome',
       menuItems: [
-        'Home (Map View)',
-        'Friends',
-        'Meeting Places',
-        'Your Schedule',
-        'Venue Schedule',
+        'Map',
+        'Rabble',
+        'Personal Agenda',
+        'Schedule/Set List',
         'Emergency Info'
       ]
     };
@@ -28,14 +20,19 @@ export default class NavigatorIOSApp extends Component {
   render() {
     return (
       <View>
-        {this.state.menuItems.map((item) => (
-          <Button
-            style={styles.button}
-            onPress={function(){console.log({item})}}
-            title={item}
-            color="#841584"
-            accessibilityLabel={`Navigate to the ${item} view`}
-          />
+        {this.state.menuItems.map((item, index) => (
+          <View key={index}>
+            <Button
+              style={styles.button}
+              onPress={() => {
+                this.props.swapView(index);
+              }}
+              title={item}
+              color="#1cafff"
+              accessibilityLabel={`Navigate to the ${item} view`}
+            />
+            <View style={styles.line} />
+          </View>
         ))}
       </View>
     );
