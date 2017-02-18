@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { Route, matchPath as Match, MemoryRouter as Router } from 'react-router';
 import styles from './styles';
 import Nav from './containers/Nav/Nav';
 import MiniNav from './containers/Nav/MiniNav';
@@ -11,10 +12,9 @@ import InviteFriends from './components/InviteFriends/InviteFriends';
 export default class App extends React.Component {
   constructor() {
     super();
-
     this.state = {
       user_fb_id: '444der',
-      selected: 1,
+      fullMenu: false,
       rabble: [
         { fb_id: '111smi', group_id: '12345', name: 'Smriti', img: 'https://facebook.github.io/react/img/logo_og.png' },
         { fb_id: '222john', group_id: '12345', name: 'John', img: 'https://facebook.github.io/react/img/logo_og.png' },
@@ -35,43 +35,57 @@ export default class App extends React.Component {
         { name: 'Basecamp', type: 'group', lat: 37.7683, long: -122.49002, radius: 10 }
       ]
     };
-
-    this.views = [
-      <MapViewer />,
-      <Rabble
-        user_id={this.state.user_fb_id}
-        rabble={this.state.rabble}
-        rabble_loc={this.state.rabble_loc}
-        geo_fences={this.state.geo_fences}
-        sortRabble={this.sortRabble.bind(this)}
-      />,
-      <View><Text>User Schedule Holder</Text></View>,
-      <VenueSchedule />,
-      <View><Text>Emergency Info Holder</Text></View>,
-      <InviteFriends />,
-      <Nav swapView={this.swapView.bind(this)}/>
-    ];
   }
 
   render() {
-    if (this.state.selected === 6) {
+    if (false) {
       return (
-        <View style={styles.container}>
-          {this.views[this.state.selected]}
-        </View>
+        <Router>
+          <View style={styles.container}>
+            <Nav swapView={this.swapView.bind(this)}/>
+            {this.views[this.state.selected]}
+          </View>
+        </Router>
       );
     }
     return (
-      <View style={styles.container}>
-        <MiniNav swapView={this.swapView.bind(this)}/>
-        {this.views[this.state.selected]}
-      </View>
+      <Router>
+        <View style={styles.container}>
+          <this.NavMenu />
+          <Route exact path="/" component={MapViewer}/>
+          <Route path="/rabble" component={() => (
+            <Rabble
+              user_id={this.state.user_fb_id}
+              rabble={this.state.rabble}
+              rabble_loc={this.state.rabble_loc}
+              geo_fences={this.state.geo_fences}
+              sortRabble={this.sortRabble.bind(this)}
+            />
+          )}/>
+          <Route path="/agenda" component={() => <View><Text>User Schedule Holder</Text></View>}/>
+          <Route path="/schedule" component={VenueSchedule}/>
+          <Route path="/emergency" component={() => <View><Text>Emergency Info Holder</Text></View>}/>
+          <Route path="/invite" component={InviteFriends}/>
+        </View>
+      </Router>
     );
   }
 
-  swapView(index) {
+  NavMenu = () => {
+    if (this.state.fullMenu) {
+      return (
+        <View>
+          <Nav toggleMenu={this.toggleMenu.bind(this)}/>
+          <MiniNav toggleMenu={this.toggleMenu.bind(this)}/>
+        </View>
+      );
+    }
+    return <MiniNav toggleMenu={this.toggleMenu.bind(this)}/>;
+  };
+
+  toggleMenu(hide = !this.state.fullMenu) {
     this.setState({
-      selected: index
+      fullMenu: hide
     });
   }
 
