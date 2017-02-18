@@ -1,11 +1,10 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { Route, matchPath as Match, MemoryRouter as Router } from 'react-router';
+import { Route, MemoryRouter as Router } from 'react-router';
 import styles from './styles';
-import Nav from './containers/Nav/Nav';
-import MiniNav from './containers/Nav/MiniNav';
+import NavMenu from './components/Nav/NavMenu';
 import MapViewer from './components/MapView/MapView';
-import Rabble from './containers/Rabble/Rabble';
+import Rabble from './components/Rabble/Rabble';
 import VenueSchedule from './components/VenueSchedule/VenueSchedule';
 import InviteFriends from './components/InviteFriends/InviteFriends';
 
@@ -38,20 +37,10 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (false) {
-      return (
-        <Router>
-          <View style={styles.container}>
-            <Nav swapView={this.swapView.bind(this)}/>
-            {this.views[this.state.selected]}
-          </View>
-        </Router>
-      );
-    }
     return (
       <Router>
         <View style={styles.container}>
-          <this.NavMenu />
+          <NavMenu fullMenu={this.state.fullMenu} toggleMenu={this.toggleMenu.bind(this)}/>
           <Route exact path="/" component={MapViewer}/>
           <Route path="/rabble" component={() => (
             <Rabble
@@ -70,18 +59,6 @@ export default class App extends React.Component {
       </Router>
     );
   }
-
-  NavMenu = () => {
-    if (this.state.fullMenu) {
-      return (
-        <View>
-          <Nav toggleMenu={this.toggleMenu.bind(this)}/>
-          <MiniNav toggleMenu={this.toggleMenu.bind(this)}/>
-        </View>
-      );
-    }
-    return <MiniNav toggleMenu={this.toggleMenu.bind(this)}/>;
-  };
 
   toggleMenu(hide = !this.state.fullMenu) {
     this.setState({
