@@ -7,4 +7,4 @@ const MapView = () => (
   </View>
 );
 
-export defualt MapView;
+export default  MapView;
