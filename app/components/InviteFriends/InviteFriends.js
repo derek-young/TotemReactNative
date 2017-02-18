@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Button, TextInput } from 'react-native'
+import { View, Button, TextInput, Text } from 'react-native'
 import SearchBar from 'react-native-search-bar';
 console.log("ola is here: ", SearchBar);
 import SelectMultiple from 'react-native-select-multiple';
