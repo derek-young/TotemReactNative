@@ -4,7 +4,7 @@ import styles from './NavStyles';
 
 const MiniNav = ({ swapView }) => (
   <View style={styles.mini}>
-    <TouchableHighlight style={styles.highlight} onPress={() => swapView(5)}>
+    <TouchableHighlight style={styles.highlight} onPress={() => swapView(6)}>
       <View>
         <View style={styles.miniBar}></View>
         <View style={styles.miniBar}></View>
