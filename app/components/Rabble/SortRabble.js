@@ -6,21 +6,35 @@ const SortRabble = ({ sortRabble }) => (
   <View style={rabbleStyles.sort_row}>
     <TouchableHighlight
       style={rabbleStyles.sort_item}
-      onPress={() => sortRabble('alpha')}>
+      onPress={() => sortRabble(sortAZ)}>
       <Image source={require('../../img/a-z-icon.png')}/>
     </TouchableHighlight>
     <TouchableHighlight
       style={rabbleStyles.sort_item}
-      onPress={() => sortRabble('geofence')}>
+      onPress={() => sortRabble(sortGeofence)}>
       <Image source={require('../../img/fence-icon.png')}/>
     </TouchableHighlight>
     <TouchableHighlight
       style={rabbleStyles.sort_item}
-      onPress={() => sortRabble('proximity')}>
+      onPress={() => sortRabble(sortProximity)}>
       <Image source={require('../../img/radar-icon.png')}/>
     </TouchableHighlight>
   </View>
 );
+
+function sortAZ(a, b) {
+  if(a.name < b.name) return -1;
+  if(a.name > b.name) return 1;
+  return 0;
+}
+
+function sortGeofence(a, b) {
+  console.log('geofence sort');
+}
+
+function sortProximity(a, b) {
+  console.log('proximity sort');
+}
 
 
 export default SortRabble;
