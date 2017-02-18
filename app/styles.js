@@ -19,11 +19,11 @@ export default StyleSheet.create({
   line: {
     alignSelf: 'stretch',
     height: 3,
-    backgroundColor: 'lightgrey'
+    backgroundColor: '#d3d3d3'
   },
   thinLine: {
     alignSelf: 'stretch',
     height: 1,
-    backgroundColor: 'lightgrey'
+    backgroundColor: '#d3d3d3'
   }
 });
