@@ -3,7 +3,7 @@ import { Image, Text, View } from 'react-native';
 import styles from './styles';
 import Nav from './containers/Nav/Nav';
 import MiniNav from './containers/Nav/MiniNav';
-import Map from './components/MapView';
+import MapViewer from './components/MapView';
 import Rabble from './containers/Rabble/Rabble';
 import VenueSchedule from './components/VenueSchedule';
 
@@ -29,7 +29,7 @@ export default class App extends React.Component {
     };
 
     this.views = [
-      <Map />,
+      <MapViewer />,
       <Rabble rabble={this.state.rabble} rabble_loc={this.state.rabble_loc}/>,
       <View><Text>User Schedule Holder</Text></View>,
       <VenueSchedule />,

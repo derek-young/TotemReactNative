@@ -1,10 +1,33 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet, Dimensions } from 'react-native';
+import MapView from 'react-native-maps';
 
-const MapView = () => (
+const MapViewer = () => (
   <View>
-    <Text>Test MapView</Text>
+    <MapView
+      style={styles.map}
+      initialRegion={{
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }}
+    />
   </View>
 );
 
-export default MapView;
+const styles = StyleSheet.create({
+  container: {
+    flexGrow:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f4ee42',
+
+  },
+  map: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  }
+})
+
+export default MapViewer;
