@@ -13,6 +13,8 @@ export default class Nav extends Component {
         { path: '/rabble', label: 'Rabble'},
         { path: '/agenda', label: 'Personal Agenda'},
         { path: '/schedule', label: 'Schedule/Set List'},
+        { path: '/emergency', label: 'Emergency Info'},
+        { path: '/invite', label: 'Invite Friends'},
       ]
     };
   }

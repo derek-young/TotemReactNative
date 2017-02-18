@@ -91,18 +91,11 @@ export default class App extends React.Component {
   }
 
   sortRabble(method) {
-    const sortedRabble = this.state.rabble.sort(sortAZ);
-    console.log(sortedRabble);
-    //Need to change how views are rendered for sort to work
-    //this.views
+    console.log(method);
+    console.log(this.state.rabble);
+    const sortedRabble = this.state.rabble.sort(method);
     this.setState({
       rabble: sortedRabble
     });
   }
-}
-
-function sortAZ(a, b) {
-  if(a.name < b.name) return -1;
-  if(a.name > b.name) return 1;
-  return 0;
 }

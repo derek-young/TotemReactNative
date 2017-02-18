@@ -23,7 +23,6 @@ const RabbleView = ({ userId, rabble, rabbleLoc, geoFences, sortRabble }) => (
     <ScrollView>
       {rabble.map((friend, index) => {
         if (friend.fb_id !== userId) {
-          console.log(index + ': ', friend.name)
           return (
             <RabbleRow
               key={index}
