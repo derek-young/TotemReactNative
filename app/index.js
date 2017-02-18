@@ -16,7 +16,7 @@ export default class App extends React.Component {
       user_fb_id: '444der',
       selected: 1,
       rabble: [
-        { fb_id: '111smi', group_id: '12345', name: 'Smirti', img: 'https://facebook.github.io/react/img/logo_og.png' },
+        { fb_id: '111smi', group_id: '12345', name: 'Smriti', img: 'https://facebook.github.io/react/img/logo_og.png' },
         { fb_id: '222john', group_id: '12345', name: 'John', img: 'https://facebook.github.io/react/img/logo_og.png' },
         { fb_id: '333pat', group_id: '12345', name: 'Pat', img: 'https://facebook.github.io/react/img/logo_og.png' },
         { fb_id: '444der', group_id: '12345', name: 'Derek', img: 'https://facebook.github.io/react/img/logo_og.png' }
@@ -38,7 +38,13 @@ export default class App extends React.Component {
 
     this.views = [
       <MapViewer />,
-      <Rabble rabble={this.state.rabble} rabble_loc={this.state.rabble_loc}/>,
+      <Rabble
+        user_id={this.state.user_fb_id}
+        rabble={this.state.rabble}
+        rabble_loc={this.state.rabble_loc}
+        geo_fences={this.state.geo_fences}
+        sortRabble={this.sortRabble.bind(this)}
+      />,
       <View><Text>User Schedule Holder</Text></View>,
       <VenueSchedule />,
       <View><Text>Emergency Info Holder</Text></View>,
@@ -69,7 +75,19 @@ export default class App extends React.Component {
     });
   }
 
-  getDegrees(meters) {
-    return meters / 100000;
+  sortRabble(method) {
+    const sortedRabble = this.state.rabble.sort(sortAZ);
+    console.log(sortedRabble);
+    //Need to change how views are rendered for sort to work
+    //this.views
+    this.setState({
+      rabble: sortedRabble
+    });
   }
+}
+
+function sortAZ(a, b) {
+  if(a.name < b.name) return -1;
+  if(a.name > b.name) return 1;
+  return 0;
 }

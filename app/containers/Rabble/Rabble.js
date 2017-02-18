@@ -1,23 +1,39 @@
 import React from 'react';
-import { Button, Image, ScrollView, Text, TouchableHighlight, View } from 'react-native';
-import styles from '../../styles';
+import { ScrollView, Text, TouchableHighlight, View } from 'react-native';
 import rabbleStyles from './RabbleStyles';
+import RabbleRow from './RabbleRow';
+import SortRabble from './SortRabble';
 
-const RabbleView = ({ rabble, rabble_loc }) => (
+const RabbleView = ({ user_id, rabble, rabble_loc, geo_fences, sortRabble }) => (
   <View style={{ flex: 1 }}>
+    <SortRabble sortRabble={sortRabble}/>
+    {rabble.map((friend, index) => {
+      //Anchor current user info at top of view
+      if (friend.fb_id === user_id) {
+        return (
+          <RabbleRow
+            key={index}
+            friend={friend}
+            rabble_loc={rabble_loc}
+            geo_fences={geo_fences}
+          />
+        );
+      }
+    })}
     <ScrollView>
-      {rabble.map((friend) => (
-        <View key={friend.fb_id}>
-          <View style={rabbleStyles.main}>
-            <Image style={rabbleStyles.profile_img} source={{ uri: friend.img }}/>
-            <View>
-              <Text style={rabbleStyles.text}>{friend.name}</Text>
-              <Text style={rabbleStyles.subtext}>{`lat: ${rabble_loc[friend.fb_id].lat}, long: ${rabble_loc[friend.fb_id].long}`}</Text>
-            </View>
-          </View>
-          <View style={styles.thinLine} />
-        </View>
-      ))}
+      {rabble.map((friend, index) => {
+        if (friend.fb_id !== user_id) {
+          console.log(index + ': ', friend.name)
+          return (
+            <RabbleRow
+              key={index}
+              friend={friend}
+              rabble_loc={rabble_loc}
+              geo_fences={geo_fences}
+            />
+          );
+        }
+      })}
     </ScrollView>
     <TouchableHighlight onPress={function(){console.log('add a friend')}}>
       <View style={rabbleStyles.button}>
