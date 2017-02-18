@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Button, TextInput } from 'react-native'
+import { View, Button, TextInput, Text } from 'react-native'
 import SelectMultiple from 'react-native-select-multiple';
 
 const friends = ['Apples', 'Oranges', 'Pears','ola',"a"]
