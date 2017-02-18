@@ -6,6 +6,9 @@ import MiniNav from './containers/Nav/MiniNav';
 import MapViewer from './components/MapView';
 import Rabble from './containers/Rabble/Rabble';
 import VenueSchedule from './components/VenueSchedule';
+import findMe from './components/locationWatcher';
+import * as firebase from 'firebase';
+
 
 export default class App extends React.Component {
   constructor() {
@@ -26,7 +29,7 @@ export default class App extends React.Component {
         '333pat': { fb_id: '333pat', group_id: '12345', lat: 37.76757, long: -122.49427 },
         '444der': { fb_id: '444der', group_id: '12345', lat: 37.76837, long: -122.48994 }
       },
-      geo_fences: [
+      geoFences: [
         { name: 'Lands End Stage', type: 'venue', lat: 37.76766, long: -122.49479, radius: 50 },
         { name: 'Sutro Stage', type: 'venue', lat: 37.76992, long: -122.49341, radius: 50 },
         { name: 'Panhandle Stage', type: 'venue', lat: 37.76984, long: -122.48619, radius: 30 },
@@ -43,6 +46,28 @@ export default class App extends React.Component {
       <View><Text>Emergency Info Holder</Text></View>,
       <Nav swapView={this.swapView.bind(this)}/>
     ];
+  }
+
+  componentWillMount() {
+  // Initialize Firebase
+    const config = {
+      apiKey: "AIzaSyBYzcVnUFZiLsR-XDhCKWMNVVw4sEN3syc",
+      authDomain: "rabble-984ed.firebaseapp.com",
+      databaseURL: "https://rabble-984ed.firebaseio.com",
+      storageBucket: "rabble-984ed.appspot.com",
+      messagingSenderId: "869569787907"
+    };
+    firebase.initializeApp(config);
+
+    console.log(findMe.lat, findMe.long);
+  }
+
+  componentDidMount() {
+    const rootRef = firebase.database().ref().child('react');
+    const locRef = rootRef.child('rabble_loc');
+    locRef.on('value', snap => {
+      rabble_loc: snap.val();
+    })
   }
 
   render() {
