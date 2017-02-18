@@ -14,7 +14,7 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      user_fb_id: '444der',
+      userFbId: '444der',
       fullMenu: false,
       rabble: [
         { fb_id: '111smi', group_id: '12345', name: 'Smriti', img: 'https://facebook.github.io/react/img/logo_og.png' },
@@ -22,7 +22,7 @@ export default class App extends React.Component {
         { fb_id: '333pat', group_id: '12345', name: 'Pat', img: 'https://facebook.github.io/react/img/logo_og.png' },
         { fb_id: '444der', group_id: '12345', name: 'Derek', img: 'https://facebook.github.io/react/img/logo_og.png' }
       ],
-      rabble_loc: {
+      rabbleLoc: {
         '111smi': { fb_id: '111smi', group_id: '12345', lat: 37.76998, long: -122.49298 },
         '222john': { fb_id: '222john', group_id: '12345', lat: 37.76772, long: -122.49438 },
         '333pat': { fb_id: '333pat', group_id: '12345', lat: 37.76757, long: -122.49427 },
@@ -68,10 +68,10 @@ export default class App extends React.Component {
           <Route exact path="/" component={MapViewer}/>
           <Route path="/rabble" component={() => (
             <Rabble
-              user_id={this.state.user_fb_id}
+              userId={this.state.userFbId}
               rabble={this.state.rabble}
-              rabble_loc={this.state.rabble_loc}
-              geo_fences={this.state.geo_fences}
+              rabbleLoc={this.state.rabbleLoc}
+              geoFences={this.state.geoFences}
               sortRabble={this.sortRabble.bind(this)}
             />
           )}/>
