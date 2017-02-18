@@ -19,7 +19,7 @@ export default class Rabble extends React.Component {
   		} else {
   			console.log('Login Successful ' + result.grantedPermissions);
         context.setState({isLoggedIn: true})
-        console.log('AFTER', context.state.isLoggedIn)
+
   		}
   	}, function(error) {
   		console.log('An error occured: ' + error)
