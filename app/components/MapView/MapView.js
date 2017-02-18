@@ -7,23 +7,16 @@ const MapViewer = () => (
     <MapView
       style={styles.map}
       initialRegion={{
-        latitude: 37.78825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitude: 37.76757,
+        longitude: -122.49427,
+        latitudeDelta: 0.0222,
+        longitudeDelta: 0.0121,
       }}
     />
   </View>
 );
 
 const styles = StyleSheet.create({
-  container: {
-    flexGrow:1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f4ee42',
-
-  },
   map: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
