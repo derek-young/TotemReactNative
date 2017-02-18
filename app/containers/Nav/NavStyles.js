@@ -4,14 +4,10 @@ export default StyleSheet.create({
   button: {
     fontWeight: 'bold'
   },
-  line: {
-    alignSelf: 'stretch',
-    height: 3,
-    backgroundColor: 'lightgrey'
-  },
   mini: {
     alignSelf: 'stretch',
     backgroundColor: 'lightgrey',
+    paddingTop: 3,
     paddingBottom: 3,
     alignItems:'center'
   },
