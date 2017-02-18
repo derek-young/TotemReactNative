@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, Button, Text, View } from 'react-native';
-import styles from './NavStyles';
+import styles from '../../styles';
+import navStyles from './NavStyles';
 
 export default class Nav extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ export default class Nav extends Component {
         {this.state.menuItems.map((item, index) => (
           <View key={index}>
             <Button
-              style={styles.button}
+              style={navStyles.button}
               onPress={() => {
                 this.props.swapView(index);
               }}
