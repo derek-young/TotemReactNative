@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import styles from './styles';
 import Nav from './containers/Nav/Nav';
 import MiniNav from './containers/Nav/MiniNav';
@@ -12,20 +12,27 @@ export default class App extends React.Component {
     super();
 
     this.state = {
-      user_fb_id: '444abc',
-      selected: 5,
+      user_fb_id: '444der',
+      selected: 1,
       rabble: [
-        { fb_id: '111abc', group_id: '12345', name: 'Smirti', img: '../../img/smirti.png' },
-        { fb_id: '222abc', group_id: '12345', name: 'John', img: '../../img/john.jpg' },
-        { fb_id: '333abc', group_id: '12345', name: 'Pat', img: '../../img/pat.png' },
-        { fb_id: '444abc', group_id: '12345', name: 'Derek', img: '../../img/derek.jpg' }
+        { fb_id: '111smi', group_id: '12345', name: 'Smirti', img: 'https://facebook.github.io/react/img/logo_og.png' },
+        { fb_id: '222john', group_id: '12345', name: 'John', img: 'https://facebook.github.io/react/img/logo_og.png' },
+        { fb_id: '333pat', group_id: '12345', name: 'Pat', img: 'https://facebook.github.io/react/img/logo_og.png' },
+        { fb_id: '444der', group_id: '12345', name: 'Derek', img: 'https://facebook.github.io/react/img/logo_og.png' }
       ],
       rabble_loc: {
-        '111abc': { fb_id: '111abc', group_id: '12345', lat: 37.7707546, long: -122.4860556 },
-        '222abc': { fb_id: '222abc', group_id: '12345', lat: 37.768380, long: -122.493931 },
-        '333abc': { fb_id: '333abc', group_id: '12345', lat: 37.767998, long: -122.492182 },
-        '444abc': { fb_id: '444abc', group_id: '12345', lat: 37.767236, long: -122.493889 }
-      }
+        '111smi': { fb_id: '111smi', group_id: '12345', lat: 37.76998, long: -122.49298 },
+        '222john': { fb_id: '222john', group_id: '12345', lat: 37.76772, long: -122.49438 },
+        '333pat': { fb_id: '333pat', group_id: '12345', lat: 37.76757, long: -122.49427 },
+        '444der': { fb_id: '444der', group_id: '12345', lat: 37.76837, long: -122.48994 }
+      },
+      geo_fences: [
+        { name: 'Lands End Stage', type: 'venue', lat: 37.76766, long: -122.49479, radius: 50 },
+        { name: 'Sutro Stage', type: 'venue', lat: 37.76992, long: -122.49341, radius: 50 },
+        { name: 'Panhandle Stage', type: 'venue', lat: 37.76984, long: -122.48619, radius: 30 },
+        { name: 'Twin Peaks Stage', type: 'venue', lat: 37.76974, long: -122.48303, radius: 30 },
+        { name: 'Basecamp', type: 'group', lat: 37.7683, long: -122.49002, radius: 10 }
+      ]
     };
 
     this.views = [
@@ -58,5 +65,9 @@ export default class App extends React.Component {
     this.setState({
       selected: index
     });
+  }
+
+  getDegrees(meters) {
+    return meters / 100000;
   }
 }
