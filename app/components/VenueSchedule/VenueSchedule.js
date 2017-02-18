@@ -7,4 +7,4 @@ const VenueSchedule = () => (
   </View>
 );
 
-export default  VenueSchedule;
+export default VenueSchedule;
