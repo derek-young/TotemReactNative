@@ -4,32 +4,32 @@ import rabbleStyles from './RabbleStyles';
 import RabbleRow from './RabbleRow';
 import SortRabble from './SortRabble';
 
-const RabbleView = ({ user_id, rabble, rabble_loc, geo_fences, sortRabble }) => (
+const RabbleView = ({ userId, rabble, rabbleLoc, geoFences, sortRabble }) => (
   <View style={{ flex: 1 }}>
     <SortRabble sortRabble={sortRabble}/>
     {rabble.map((friend, index) => {
       //Anchor current user info at top of view
-      if (friend.fb_id === user_id) {
+      if (friend.fb_id === userId) {
         return (
           <RabbleRow
             key={index}
             friend={friend}
-            rabble_loc={rabble_loc}
-            geo_fences={geo_fences}
+            rabbleLoc={rabbleLoc}
+            geoFences={geoFences}
           />
         );
       }
     })}
     <ScrollView>
       {rabble.map((friend, index) => {
-        if (friend.fb_id !== user_id) {
+        if (friend.fb_id !== userId) {
           console.log(index + ': ', friend.name)
           return (
             <RabbleRow
               key={index}
               friend={friend}
-              rabble_loc={rabble_loc}
-              geo_fences={geo_fences}
+              rabbleLoc={rabbleLoc}
+              geoFences={geoFences}
             />
           );
         }
