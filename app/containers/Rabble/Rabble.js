@@ -9,7 +9,7 @@ const RabbleView = ({ rabble, rabble_loc }) => (
       {rabble.map((friend) => (
         <View key={friend.fb_id}>
           <View style={rabbleStyles.main}>
-            <Image style={rabbleStyles.profile_img} source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }}/>
+            <Image style={rabbleStyles.profile_img} source={{ uri: friend.img }}/>
             <View>
               <Text style={rabbleStyles.text}>{friend.name}</Text>
               <Text style={rabbleStyles.subtext}>{`lat: ${rabble_loc[friend.fb_id].lat}, long: ${rabble_loc[friend.fb_id].long}`}</Text>
