@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  */
-
+#import "GoogleMaps"
 #import "AppDelegate.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <React/RCTBundleURLProvider.h>
@@ -14,7 +14,8 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions [GMSServices provideAPIKey:@"AIzaSyAG2IN0BHkoGyG1oEK0Q4vpHvl4gfXQHsc"];
+
 {
   NSURL *jsCodeLocation;
 
@@ -50,3 +51,5 @@
   
 
 @end
+
+

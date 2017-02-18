@@ -25,6 +25,16 @@ export default StyleSheet.create({
     backgroundColor: '#222222',
     height: 70,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
+  },
+  sort_row: {
+    height: 60,
+    flexDirection: 'row',
+    backgroundColor: '#222222'
+  },
+  sort_item: {
+    width: Dimensions.get('window').width / 3,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
