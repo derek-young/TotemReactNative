@@ -3,9 +3,10 @@ import { Text, View } from 'react-native';
 import styles from './styles';
 import Nav from './containers/Nav/Nav';
 import MiniNav from './containers/Nav/MiniNav';
-import MapViewer from './components/MapView';
+import MapViewer from './components/MapView/MapView';
 import Rabble from './containers/Rabble/Rabble';
-import VenueSchedule from './components/VenueSchedule';
+import VenueSchedule from './components/VenueSchedule/VenueSchedule';
+import InviteFriends from './components/InviteFriends/InviteFriends';
 
 export default class App extends React.Component {
   constructor() {
@@ -41,12 +42,13 @@ export default class App extends React.Component {
       <View><Text>User Schedule Holder</Text></View>,
       <VenueSchedule />,
       <View><Text>Emergency Info Holder</Text></View>,
+      <InviteFriends />,
       <Nav swapView={this.swapView.bind(this)}/>
     ];
   }
 
   render() {
-    if (this.state.selected === 5) {
+    if (this.state.selected === 6) {
       return (
         <View style={styles.container}>
           {this.views[this.state.selected]}

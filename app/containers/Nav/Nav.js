@@ -13,7 +13,8 @@ export default class Nav extends Component {
         'Rabble',
         'Personal Agenda',
         'Schedule/Set List',
-        'Emergency Info'
+        'Emergency Info',
+        'Invite Friends'
       ]
     };
   }
