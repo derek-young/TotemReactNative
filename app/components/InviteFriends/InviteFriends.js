@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { View, Button } from 'react-native'
+import { View, Button, TextInput } from 'react-native'
+import SearchBar from 'react-native-search-bar';
+console.log("ola is here: ", SearchBar);
 import SelectMultiple from 'react-native-select-multiple';
 
-const friends = ['Apples', 'Oranges', 'Pears','ola']
+const friends = ['Apples', 'Oranges', 'Pears','ola',"a"]
 
  export default class InviteFriends extends Component {
   state = { selectedFriends: [] }
@@ -10,7 +12,8 @@ const friends = ['Apples', 'Oranges', 'Pears','ola']
    constructor(props) {
     super(props);
     this.state = {
-      selectedFriends: []
+      selectedFriends: [],
+      text:""
     };
   }
   onSelectionsChange = (selectedFriends) => {
@@ -21,12 +24,38 @@ const friends = ['Apples', 'Oranges', 'Pears','ola']
   	this.setState({text: this.state.selectedFriends});
 
   }
+  showFriendList(text) {
+    console.log("i am here",text);
+    var searchValue = this.state.text.toLowerCase();
+    if(this.state.text === "") 
+      return friends;
+    else {
+
+      return friends.filter(function(item) {
+        console.log("here item", item);
+         if((item.toLowerCase()).indexOf(searchValue) !== -1){
+            return item;
+         }
+                  
+      });
+      
+    }
+    console.log("ola");
+  
+    
+  }
 
   render () {
     return (
       <View>
+      <TextInput
+         style={{height: 40, borderColor: 'gray', borderWidth: 1}} 
+         onChangeText={(text) => {this.setState({text}); this.showFriendList(text) }}
+         value={this.state.text}
+        />
+
         <SelectMultiple
-          items={friends}
+          items={this.showFriendList("")}
           selectedItems={this.state.selectedFriends}
           onSelectionsChange={this.onSelectionsChange}
         />
