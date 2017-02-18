@@ -1,8 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  button: {
-    fontWeight: 'bold'
+  main: {
+    alignItems:'center',
+    justifyContent: 'center',
+    height: 40
+  },
+  text: {
+    color: '#1cafff',
+    fontSize: 18
   },
   mini: {
     alignSelf: 'stretch',

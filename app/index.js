@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { Route, MemoryRouter as Router } from 'react-router';
 import styles from './styles';
-import Nav from './containers/Nav/Nav';
-import MiniNav from './containers/Nav/MiniNav';
+import NavMenu from './components/Nav/NavMenu';
 import MapViewer from './components/MapView/MapView';
-import Rabble from './containers/Rabble/Rabble';
+import Rabble from './components/Rabble/Rabble';
 import findMe from './components/locationWatcher';
 import * as firebase from 'firebase';
 import VenueSchedule from './components/VenueSchedule/VenueSchedule';
@@ -13,12 +13,11 @@ import InviteFriends from './components/InviteFriends/InviteFriends';
 export default class App extends React.Component {
   constructor() {
     super();
-
     this.state = {
       user_fb_id: '444der',
-      selected: 1,
+      fullMenu: false,
       rabble: [
-        { fb_id: '111smi', group_id: '12345', name: 'Smirti', img: 'https://facebook.github.io/react/img/logo_og.png' },
+        { fb_id: '111smi', group_id: '12345', name: 'Smriti', img: 'https://facebook.github.io/react/img/logo_og.png' },
         { fb_id: '222john', group_id: '12345', name: 'John', img: 'https://facebook.github.io/react/img/logo_og.png' },
         { fb_id: '333pat', group_id: '12345', name: 'Pat', img: 'https://facebook.github.io/react/img/logo_og.png' },
         { fb_id: '444der', group_id: '12345', name: 'Derek', img: 'https://facebook.github.io/react/img/logo_og.png' }
@@ -37,16 +36,6 @@ export default class App extends React.Component {
         { name: 'Basecamp', type: 'group', lat: 37.7683, long: -122.49002, radius: 10 }
       ]
     };
-
-    this.views = [
-      <MapViewer />,
-      <Rabble rabble={this.state.rabble} rabble_loc={this.state.rabble_loc}/>,
-      <View><Text>User Schedule Holder</Text></View>,
-      <VenueSchedule />,
-      <View><Text>Emergency Info Holder</Text></View>,
-      <InviteFriends />,
-      <Nav swapView={this.swapView.bind(this)}/>
-    ];
   }
 
   componentWillMount() {
@@ -72,28 +61,48 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.selected === 6) {
-      return (
-        <View style={styles.container}>
-          {this.views[this.state.selected]}
-        </View>
-      );
-    }
     return (
-      <View style={styles.container}>
-        <MiniNav swapView={this.swapView.bind(this)}/>
-        {this.views[this.state.selected]}
-      </View>
+      <Router>
+        <View style={styles.container}>
+          <NavMenu fullMenu={this.state.fullMenu} toggleMenu={this.toggleMenu.bind(this)}/>
+          <Route exact path="/" component={MapViewer}/>
+          <Route path="/rabble" component={() => (
+            <Rabble
+              user_id={this.state.user_fb_id}
+              rabble={this.state.rabble}
+              rabble_loc={this.state.rabble_loc}
+              geo_fences={this.state.geo_fences}
+              sortRabble={this.sortRabble.bind(this)}
+            />
+          )}/>
+          <Route path="/agenda" component={() => <View><Text>User Schedule Holder</Text></View>}/>
+          <Route path="/schedule" component={VenueSchedule}/>
+          <Route path="/emergency" component={() => <View><Text>Emergency Info Holder</Text></View>}/>
+          <Route path="/invite" component={InviteFriends}/>
+        </View>
+      </Router>
     );
   }
 
-  swapView(index) {
+  toggleMenu(hide = !this.state.fullMenu) {
     this.setState({
-      selected: index
+      fullMenu: hide
     });
   }
 
-  getDegrees(meters) {
-    return meters / 100000;
+  sortRabble(method) {
+    const sortedRabble = this.state.rabble.sort(sortAZ);
+    console.log(sortedRabble);
+    //Need to change how views are rendered for sort to work
+    //this.views
+    this.setState({
+      rabble: sortedRabble
+    });
   }
+}
+
+function sortAZ(a, b) {
+  if(a.name < b.name) return -1;
+  if(a.name > b.name) return 1;
+  return 0;
 }
