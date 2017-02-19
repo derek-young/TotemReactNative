@@ -2,17 +2,18 @@ import React from 'react';
 import { View } from 'react-native';
 import Nav from './Nav';
 import MiniNav from './MiniNav';
+import store from '../../store';
 
-const NavMenu = ({ fullMenu, toggleMenu }) => {
-  if (fullMenu) {
+const NavMenu = ({ dispatch }) => {
+  if (store.getState().nav.fullMenu) {
     return (
       <View>
-        <Nav toggleMenu={toggleMenu}/>
-        <MiniNav toggleMenu={toggleMenu}/>
+        <Nav dispatch={dispatch}/>
+        <MiniNav dispatch={dispatch}/>
       </View>
     );
   }
-  return <MiniNav toggleMenu={toggleMenu}/>;
+  return <MiniNav dispatch={dispatch}/>;
 };
 
 export default NavMenu;
