@@ -44,12 +44,9 @@ class App extends React.Component {
     })
   }
 
-
-
-  renderContent() {
+  render() {
     switch (this.state.loggedIn) {
-      case true:
-        return (
+      case true: return (
           <Router>
             <View style={styles.container}>
               <NavMenu dispatch={this.props.dispatch}/>
@@ -62,20 +59,9 @@ class App extends React.Component {
             </View>
           </Router>
         );
-      case false:
-        return <LoginForm />;
-      default:
-        return <Spinner size="large" />;
+      case false: return <LoginForm />;
+      default: return <Spinner size="large" />;
     }
-  }
-
-  render() {
-    return (
-      <View>
-        <Header headerText="Rabble" />
-        {this.renderContent()}
-      </View>
-    );
   }
 }
 
