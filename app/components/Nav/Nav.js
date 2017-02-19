@@ -1,38 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, View } from 'react-native';
-import styles from '../../styles';
-import navStyles from './NavStyles';
 import NavLink from './NavLink';
+import navStyles from './NavStyles';
+import styles from '../../styles';
+import store from '../../store';
 
-export default class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      menuItems: [
-        { path: '/', label: 'Map' },
-        { path: '/rabble', label: 'Rabble'},
-        { path: '/agenda', label: 'Personal Agenda'},
-        { path: '/schedule', label: 'Schedule/Set List'},
-        { path: '/emergency', label: 'Emergency Info'},
-        { path: '/invite', label: 'Invite Friends'},
-      ]
-    };
-  }
-
-  render() {
-    return (
-      <View>
-        {this.state.menuItems.map((item, index) => (
-          <View key={index}>
-            <NavLink to={item.path} toggleMenu={this.props.toggleMenu}>
-              <Text style={navStyles.text}>
-                {item.label}
-              </Text>
-            </NavLink>
-            <View style={styles.line} />
-          </View>
-        ))}
+const Nav = ({ dispatch }) => (
+  <View>
+    {store.getState().nav.menuItems.map((item, index) => (
+      <View key={index}>
+        <NavLink to={item.path} dispatch={dispatch}>
+          <Text style={navStyles.text}>
+            {item.label}
+          </Text>
+        </NavLink>
+        <View style={styles.line} />
       </View>
-    );
-  }
-}
+    ))}
+  </View>
+);
+
+export default Nav;

@@ -1,22 +1,23 @@
 import React from 'react';
 import { Image, Text, TouchableHighlight, View } from 'react-native';
 import rabbleStyles from './RabbleStyles';
+import { sortRabble } from '../../actions/rabbleActions'
 
-const SortRabble = ({ sortRabble }) => (
+const SortRabble = ({ dispatch }) => (
   <View style={rabbleStyles.sort_row}>
     <TouchableHighlight
       style={rabbleStyles.sort_item}
-      onPress={() => sortRabble(sortAZ)}>
+      onPress={() => dispatch(sortRabble(sortAZ))}>
       <Image source={require('../../img/a-z-icon.png')}/>
     </TouchableHighlight>
     <TouchableHighlight
       style={rabbleStyles.sort_item}
-      onPress={() => sortRabble(sortGeofence)}>
+      onPress={() => dispatch(sortRabble(sortGeofence))}>
       <Image source={require('../../img/fence-icon.png')}/>
     </TouchableHighlight>
     <TouchableHighlight
       style={rabbleStyles.sort_item}
-      onPress={() => sortRabble(sortProximity)}>
+      onPress={() => dispatch(sortRabble(sortProximity))}>
       <Image source={require('../../img/radar-icon.png')}/>
     </TouchableHighlight>
   </View>

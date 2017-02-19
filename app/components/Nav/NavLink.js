@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
 import { TouchableHighlight } from 'react-native';
+import { toggleMenu } from '../../actions/navActions';
 import navStyles from './NavStyles';
 
-const NavLink = ({ to, children, toggleMenu }, context) => (
+const NavLink = ({ to, children, dispatch }, context) => (
   <TouchableHighlight
     style={navStyles.main}
     onPress={() => {
-      toggleMenu(false);
+      dispatch(toggleMenu(false));
       context.router.push(to);
     }}>
     {children}

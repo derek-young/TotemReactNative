@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { connect } from 'react-redux';
 import { Route, MemoryRouter as Router } from 'react-router';
+import store from './store.js';
 import styles from './styles';
 import NavMenu from './components/Nav/NavMenu';
 import MapViewer from './components/MapView/MapView';
@@ -10,34 +12,7 @@ import * as firebase from 'firebase';
 import VenueSchedule from './components/VenueSchedule/VenueSchedule';
 import InviteFriends from './components/InviteFriends/InviteFriends';
 
-export default class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      userFbId: '444der',
-      fullMenu: false,
-      rabble: [
-        { fb_id: '111smi', group_id: '12345', name: 'Smriti', img: 'https://facebook.github.io/react/img/logo_og.png' },
-        { fb_id: '222john', group_id: '12345', name: 'John', img: 'https://facebook.github.io/react/img/logo_og.png' },
-        { fb_id: '333pat', group_id: '12345', name: 'Pat', img: 'https://facebook.github.io/react/img/logo_og.png' },
-        { fb_id: '444der', group_id: '12345', name: 'Derek', img: 'https://facebook.github.io/react/img/logo_og.png' }
-      ],
-      rabbleLoc: {
-        '111smi': { fb_id: '111smi', group_id: '12345', lat: 37.76998, long: -122.49298 },
-        '222john': { fb_id: '222john', group_id: '12345', lat: 37.76772, long: -122.49438 },
-        '333pat': { fb_id: '333pat', group_id: '12345', lat: 37.76757, long: -122.49427 },
-        '444der': { fb_id: '444der', group_id: '12345', lat: 37.76837, long: -122.48994 }
-      },
-      geoFences: [
-        { name: 'Lands End Stage', type: 'venue', lat: 37.76766, long: -122.49479, radius: 50 },
-        { name: 'Sutro Stage', type: 'venue', lat: 37.76992, long: -122.49341, radius: 50 },
-        { name: 'Panhandle Stage', type: 'venue', lat: 37.76984, long: -122.48619, radius: 30 },
-        { name: 'Twin Peaks Stage', type: 'venue', lat: 37.76974, long: -122.48303, radius: 30 },
-        { name: 'Basecamp', type: 'group', lat: 37.7683, long: -122.49002, radius: 10 }
-      ]
-    };
-  }
-
+class App extends React.Component {
   componentWillMount() {
   // Initialize Firebase
     const config = {
@@ -61,20 +36,13 @@ export default class App extends React.Component {
   }
 
   render() {
+    console.log(this.props.dispatch);
     return (
       <Router>
         <View style={styles.container}>
-          <NavMenu fullMenu={this.state.fullMenu} toggleMenu={this.toggleMenu.bind(this)}/>
+          <NavMenu dispatch={this.props.dispatch}/>
           <Route exact path="/" component={MapViewer}/>
-          <Route path="/rabble" component={() => (
-            <Rabble
-              userId={this.state.userFbId}
-              rabble={this.state.rabble}
-              rabbleLoc={this.state.rabbleLoc}
-              geoFences={this.state.geoFences}
-              sortRabble={this.sortRabble.bind(this)}
-            />
-          )}/>
+          <Route path="/rabble" component={() => (<Rabble dispatch={this.props.dispatch}/>)}/>
           <Route path="/agenda" component={() => <View><Text>User Schedule Holder</Text></View>}/>
           <Route path="/schedule" component={VenueSchedule}/>
           <Route path="/emergency" component={() => <View><Text>Emergency Info Holder</Text></View>}/>
@@ -83,19 +51,12 @@ export default class App extends React.Component {
       </Router>
     );
   }
-
-  toggleMenu(hide = !this.state.fullMenu) {
-    this.setState({
-      fullMenu: hide
-    });
-  }
-
-  sortRabble(method) {
-    console.log(method);
-    console.log(this.state.rabble);
-    const sortedRabble = this.state.rabble.sort(method);
-    this.setState({
-      rabble: sortedRabble
-    });
-  }
 }
+
+export default connect((store) => {
+  return {
+    app: store.app,
+    nav: store.nav,
+    rabble: store.rabble
+  };
+})(App);
