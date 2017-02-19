@@ -1,0 +1,170 @@
+[
+    {
+        "name": "Lany",
+        "starttime": "1899-12-30T20:45:00.000Z",
+        "endtime": "1899-12-30T21:35:00.000Z",
+        "geofence": "Lands End",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Ra Ra Riot",
+        "starttime": "1899-12-30T22:05:00.000Z",
+        "endtime": "1899-12-30T22:55:00.000Z",
+        "geofence": "Lands End",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "St. Lucia",
+        "starttime": "1899-12-30T23:25:00.000Z",
+        "endtime": "1899-12-31T00:15:00.000Z",
+        "geofence": "Lands End",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Miike Snow",
+        "starttime": "1899-12-31T00:45:00.000Z",
+        "endtime": "1899-12-31T01:45:00.000Z",
+        "geofence": "Lands End",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Whitney",
+        "starttime": "1899-12-30T21:15:00.000Z",
+        "endtime": "1899-12-30T22:00:00.000Z",
+        "geofence": "Sutro",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Caveman",
+        "starttime": "1899-12-30T22:30:00.000Z",
+        "endtime": "1899-12-30T23:20:00.000Z",
+        "geofence": "Sutro",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Wet",
+        "starttime": "1899-12-30T22:30:00.000Z",
+        "endtime": "1899-12-30T23:20:00.000Z",
+        "geofence": "Sutro",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Foals",
+        "starttime": "1899-12-30T23:50:00.000Z",
+        "endtime": "1899-12-31T00:40:00.000Z",
+        "geofence": "Sutro",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Marian Hill",
+        "starttime": "1899-12-30T20:45:00.000Z",
+        "endtime": "1899-12-30T21:30:00.000Z",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Jidenna",
+        "starttime": "1899-12-30T22:10:00.000Z",
+        "endtime": "1899-12-30T22:55:00.000Z",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Polica",
+        "starttime": "1899-12-30T23:40:00.000Z",
+        "endtime": "1899-12-31T00:30:00.000Z",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Thomas Jack",
+        "starttime": "1899-12-31T01:15:00.000Z",
+        "endtime": "1899-12-31T02:05:00.000Z",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-05T07:00:00.000Z"
+    },
+    {
+        "name": "Lewis Del Mar",
+        "starttime": "1899-12-30T20:45:00.000Z",
+        "endtime": "1899-12-30T21:30:00.000Z",
+        "geofence": "Lands End",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "The Wombats",
+        "starttime": "1899-12-30T22:00:00.000Z",
+        "endtime": "1899-12-30T22:50:00.000Z",
+        "geofence": "Lands End",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Years & Years",
+        "starttime": "1899-12-30T23:20:00.000Z",
+        "endtime": "1899-12-31T00:10:00.000Z",
+        "geofence": "Lands End",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Big Grams (BIG + BOI + PHANTOGRAM",
+        "starttime": "1899-12-31T00:40:00.000Z",
+        "endtime": "1899-12-31T01:50:00.000Z",
+        "geofence": "Lands End",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Julien Baker",
+        "starttime": "1899-12-30T20:00:00.000Z",
+        "endtime": "1899-12-30T20:45:00.000Z",
+        "geofence": "Sutro",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Rogue Wave",
+        "starttime": "1899-12-30T21:15:00.000Z",
+        "endtime": "1899-12-30T22:05:00.000Z",
+        "geofence": "Sutro",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Ibeyi",
+        "starttime": "1899-12-30T22:35:00.000Z",
+        "endtime": "1899-12-30T23:25:00.000Z",
+        "geofence": "Sutro",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Lord Huron",
+        "starttime": "1899-12-30T23:55:00.000Z",
+        "endtime": "1899-12-31T00:45:00.000Z",
+        "geofence": "Sutro",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Fantastic Negrito",
+        "starttime": "1899-12-30T20:40:00.000Z",
+        "endtime": "1899-12-30T20:25:00.000Z",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "The Knocks",
+        "starttime": "1899-12-30T22:05:00.000Z",
+        "endtime": "1899-12-30T22:55:00.000Z",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Vince Staples",
+        "starttime": "1899-12-30T23:40:00.000Z",
+        "endtime": "1899-12-31T00:30:00.000Z",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-06T07:00:00.000Z"
+    },
+    {
+        "name": "Jaus",
+        "starttime": "1899-12-31T01:15:00.000Z",
+        "endtime": "1899-12-31T02:05:00.000Z",
+        "geofence": "Twin Peaks",
+        "day": "2016-08-06T07:00:00.000Z"
+    }
+]
