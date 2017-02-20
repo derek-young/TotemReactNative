@@ -5,6 +5,7 @@ import MapView from 'react-native-maps';
 const MapViewer = () => (
   <View>
     <MapView
+      provider={MapView.PROVIDER_GOOGLE}
       style={styles.map}
       initialRegion={{
         latitude: 37.76757,

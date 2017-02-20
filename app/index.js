@@ -62,7 +62,8 @@ class App extends React.Component {
       }
     });
 
-    // firebase.auth().signOut() //remove this if you're sick of logging in
+    firebase.auth().signOut() //comment this out if you're sick of logging in
+
   }
 
   componentDidMount() {
