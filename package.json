@@ -12,7 +12,6 @@
     "react": "~15.4.0",
     "react-native": "0.41.2",
     "react-native-maps": "0.13.0",
-    "react-native-search-bar": "^3.0.0",
     "react-native-select-multiple": "^1.0.3",
     "react-router": "^4.0.0-beta.6"
   },
