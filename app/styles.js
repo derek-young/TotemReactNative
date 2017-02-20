@@ -25,5 +25,15 @@ export default StyleSheet.create({
     alignSelf: 'stretch',
     height: 1,
     backgroundColor: '#d3d3d3'
+  },
+  textMed: {
+    color: '#1cafff',
+    fontSize: 20
+  },
+  buttonFull: {
+    backgroundColor: '#222222',
+    height: 70,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });

@@ -1,4 +1,5 @@
 const defaults = {
+  api_url: 'http://localhost:8000',
   userFbId: '444der',
   geoFences: [
     { name: 'Lands End Stage', type: 'venue', lat: 37.76766, long: -122.49479, radius: 50 },
