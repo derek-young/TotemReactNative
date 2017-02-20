@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Button, TextInput, Text } from 'react-native'
 import SelectMultiple from 'react-native-select-multiple';
+import ButtonFull from '../common/ButtonFull';
 
 const friends = ['Apples', 'Oranges', 'Pears','ola',"a"]
 
@@ -28,25 +29,20 @@ const friends = ['Apples', 'Oranges', 'Pears','ola',"a"]
     if(this.state.text === "")
       return friends;
     else {
-
       return friends.filter(function(item) {
         console.log("here item", item);
          if((item.toLowerCase()).indexOf(searchValue) !== -1){
             return item;
          }
-
       });
-
     }
     console.log("ola");
-
-
   }
 
   render () {
     return (
       <View>
-      <TextInput
+        <TextInput
          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
          onChangeText={(text) => {this.setState({text}); this.showFriendList(text) }}
          value={this.state.text}
@@ -57,9 +53,9 @@ const friends = ['Apples', 'Oranges', 'Pears','ola',"a"]
           selectedItems={this.state.selectedFriends}
           onSelectionsChange={this.onSelectionsChange}
         />
-        <Button
-         onPress={this.inviteFriends.bind(this)}
-         title="Invite Friends"
+        <ButtonFull
+          onPress={this.inviteFriends.bind(this)}
+          title='Invite Friends'
         />
       </View>
     )

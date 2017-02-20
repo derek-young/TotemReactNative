@@ -1,9 +1,9 @@
 import React from 'react';
-import { ScrollView, Text, TouchableHighlight, View } from 'react-native';
-import rabbleStyles from './RabbleStyles';
+import { ScrollView, View } from 'react-native';
 import RabbleRow from './RabbleRow';
 import SortRabble from './SortRabble';
 import store from '../../store';
+import ButtonFull from '../common/ButtonFull';
 
 const RabbleView = ({ dispatch }) => {
   const rabble = store.getState().rabble.rabble;
@@ -29,11 +29,10 @@ const RabbleView = ({ dispatch }) => {
           }
         })}
       </ScrollView>
-      <TouchableHighlight onPress={function(){console.log('add a friend')}}>
-        <View style={rabbleStyles.button}>
-          <Text style={rabbleStyles.text}>Add a Friend</Text>
-        </View>
-      </TouchableHighlight>
+      <ButtonFull
+        onPress={function(){console.log('add a friend')}}
+        title='Add a Friend'
+      />
     </View>
   );
 }
