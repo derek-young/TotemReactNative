@@ -29,6 +29,34 @@ class App extends React.Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
+        console.log(firebase.auth().currentUser)
+
+      /********************************************************************************/
+        function success(pos) {
+          var user = firebase.auth().currentUser
+          //if (user) {  
+            firebase.database().ref(`users/${user.uid}/coordinates`).set({
+              latitude: pos.coords.latitude,
+              longitude: pos.coords.longitude
+            });
+            console.log(pos.coords.latitude)
+            console.log(pos.coords.longitude)
+          //}
+        }
+
+        function error(err) {
+          console.warn('ERROR(' + err.code + '): ' + err.message);
+        }
+
+        const options = {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0
+        };
+
+        navigator.geolocation.watchPosition(success, error, options);
+      /********************************************************************************/
+
       } else {
         this.setState({ loggedIn: false });
       }
@@ -38,11 +66,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const rootRef = firebase.database().ref().child('react');
-    const locRef = rootRef.child('rabble_loc');
-    locRef.on('value', snap => {
-      rabble_loc: snap.val();
-    })
+    // const rootRef = firebase.database().ref().child('react');
+    // const locRef = rootRef.child('rabble_loc');
+    // locRef.on('value', snap => {
+    //   rabble_loc: snap.val();
+    // })
   }
 
   render() {
