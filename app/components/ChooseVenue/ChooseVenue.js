@@ -1,84 +1,52 @@
 import React, { Component } from 'react';
-import { Button, ScrollView, Text, TextInput, View } from 'react-native';
+import { connect } from 'react-redux';
+import { Alert, Button, ScrollView, Text, TextInput, View } from 'react-native';
 import Venue from './Venue';
 import styles from '../../styles';
 import localStyles from './ChooseVenueStyles';
+import { updateText, selectVenue } from '../../actions/venueActions';
 
-export default class ChooseVenue extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: '',
-      venues: [
-        { id: 'osl123',
-          name: 'Outside Lands Music and Art Festival',
-          address: {
-            line1: 'Golden Gate Park',
-            line2: '',
-            line3: '',
-            city: 'San Francisco',
-            state: 'CA',
-            zip: '94122',
-            country: 'USA'
-          }
-        },
-        { id: 'coach123',
-          name: 'Coachella Valley Music and Arts Festival',
-          address: {
-            line1: 'Empire Polo Club',
-            line2: '81-800 Avenue 51',
-            line3: '',
-            city: 'Indio',
-            state: 'CA',
-            zip: '92201',
-            country: 'USA'
-          }
-        }
-      ]
-    };
-  }
-
-  selectVenue(item) {
-    console.log(item)
-  }
-
-  skip() {
-
+class ChooseVenue extends Component {
+  select(id, name) {
+    Alert.alert(
+      'Confirm Selection:',
+      name,
+      [
+        {text: 'Cancel', style: 'cancel'},
+        {text: 'OK', onPress: () => {
+          this.props.dispatch(selectVenue(id));
+          this.props.push('/create');
+        }},
+      ],
+    );
   }
 
   render() {
+    console.log(this.props);
     return (
       <View style={localStyles.main}>
         <Text style={styles.h2}>Choose a Venue</Text>
         <View style={localStyles.section}>
           <TextInput
             style={localStyles.input}
-            onChangeText={(text) => this.setState({ text })}
-            value={this.state.text}
+            onChangeText={(text) => this.props.dispatch(updateText(text))}
+            value={this.props.text}
             placeholder="Search"
           />
         </View>
         <ScrollView>
           {/* Need to sort venues by proximity to user and display in that order*/}
-          {this.state.venues.map((venue, index) => {
-            const searchValue = this.state.text.toLowerCase();
+          {this.props.venues.map((venue, index) => {
+            const searchValue = this.props.text.toLowerCase();
 
             if(searchValue.length === 0) {
               return (
-                <Venue
-                  key={index}
-                  venue={venue}
-                  selectVenue={this.selectVenue.bind(this)}
-                />
+                <Venue key={index} venue={venue} select={this.select.bind(this)}/>
               );
             }
             if(venue.name.toLowerCase().indexOf(searchValue) >= 0) {
               return (
-                <Venue
-                  key={index}
-                  venue={venue}
-                  selectVenue={this.selectVenue.bind(this)}
-                />
+                <Venue key={index} venue={venue} select={this.select.bind(this)}/>
               );
             }
           })}
@@ -88,10 +56,17 @@ export default class ChooseVenue extends Component {
             style={localStyles.fixedBottom}
             title="Skip"
             color="lightgrey"
-            onPress={() => console.log('hi')}
+            onPress={() => this.props.push('/create')}
           />
         </View>
       </View>
     );
   }
 }
+
+export default connect((store) => {
+  return {
+    venues: store.venues.venues,
+    text: store.venues.text
+  };
+})(ChooseVenue);

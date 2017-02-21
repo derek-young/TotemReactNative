@@ -34,14 +34,6 @@ class App extends React.Component {
 
   }
 
-  componentDidMount() {
-    // const rootRef = firebase.database().ref().child('react');
-    // const locRef = rootRef.child('rabble_loc');
-    // locRef.on('value', snap => {
-    //   rabble_loc: snap.val();
-    // })
-  }
-
   render() {
     switch (this.state.loggedIn) {
       case true: return (
