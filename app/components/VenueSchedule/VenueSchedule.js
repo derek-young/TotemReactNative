@@ -2,14 +2,6 @@ import React, {Component} from 'react';
 import { Text, View, Picker, ScrollView, Button } from 'react-native';
 import scheduleDummyData from './scheduleDummyData.json'
 import ScheduleRow from './ScheduleRow';
-import DropDown, {
-  Select,
-  Option,
-  OptionList,
-} from 'react-native-selectme';
-
-console.log("DropDown: ", DropDown);
-console.log("dummyData: ",scheduleDummyData);
 
 export default class VenueSchedule extends Component{
 	constructor(props) {
@@ -56,17 +48,13 @@ export default class VenueSchedule extends Component{
 	              endTime={item.endtime}
 	              geoFences={item.geofence}
 	              day={item.day}
-	            
+
 	            />
-	         
-	          );       
+
+	          );
 	      })}
     	</ScrollView>
 	      </View>
 	    )
   	}
 }
-
- 
-
-
