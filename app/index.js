@@ -6,7 +6,7 @@ import store from './store.js';
 import styles from './styles';
 import * as firebase from 'firebase';
 import { Spinner } from './components/common';
-
+import geolocation from './components/MapView/geolocation'
 import NavMenu from './components/Nav/NavMenu';
 import MapViewer from './components/MapView/MapView';
 import Rabble from './components/Rabble/Rabble';
@@ -17,6 +17,7 @@ import LoginForm from './components/Auth/LoginForm';
 
 class App extends React.Component {
   state = { loggedIn: null };
+
   componentWillMount() {
     firebase.initializeApp({
       apiKey: "AIzaSyBYzcVnUFZiLsR-XDhCKWMNVVw4sEN3syc",
@@ -29,33 +30,8 @@ class App extends React.Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
-        console.log(firebase.auth().currentUser)
 
-      /********************************************************************************/
-        function success(pos) {
-          var user = firebase.auth().currentUser
-          //if (user) {  
-            firebase.database().ref(`users/${user.uid}/coordinates`).set({
-              latitude: pos.coords.latitude,
-              longitude: pos.coords.longitude
-            });
-            console.log(pos.coords.latitude)
-            console.log(pos.coords.longitude)
-          //}
-        }
-
-        function error(err) {
-          console.warn('ERROR(' + err.code + '): ' + err.message);
-        }
-
-        const options = {
-          enableHighAccuracy: true,
-          timeout: 5000,
-          maximumAge: 0
-        };
-
-        navigator.geolocation.watchPosition(success, error, options);
-      /********************************************************************************/
+        geolocation();
 
       } else {
         this.setState({ loggedIn: false });
