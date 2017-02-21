@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
+import { geolocation } from '../components/MapView/geolocation';
 
 export const emailChanged = (text) => {
   return {
@@ -21,6 +22,7 @@ export const loginUser = ({ email, password }) => {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
+      .then(geolocation())
       .catch((error) => {
         console.log(error);
 
@@ -40,6 +42,4 @@ const loginUserSuccess = (dispatch, user) => {
     type: 'login_user_success',
     payload: user
   });
-
-  Actions.main();
 };

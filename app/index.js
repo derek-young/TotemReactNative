@@ -18,17 +18,12 @@ import LoginForm from './components/Auth/LoginForm';
 
 class App extends React.Component {
 
-  componentWillMount() {
-
+  componentDidMount() {
 
   }
 
-  componentDidMount() {
-    // const rootRef = firebase.database().ref().child('react');
-    // const locRef = rootRef.child('rabble_loc');
-    // locRef.on('value', snap => {
-    //   rabble_loc: snap.val();
-    // })
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch();
   }
 
   render() {
@@ -48,7 +43,7 @@ class App extends React.Component {
             </View>
           </Router>
         );
-      case false: return <LoginForm />;
+      case undefined: return <LoginForm />;
       default: return <Spinner size="large" />;
     }
   }

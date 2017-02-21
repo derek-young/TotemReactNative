@@ -4,7 +4,6 @@ const defaults = {
   user: null,
   error: '',
   loading: false,
-  loggedIn: false
 };
 
 export default (state = defaults, action) => {
