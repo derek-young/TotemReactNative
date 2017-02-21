@@ -1,6 +1,9 @@
-export function updateLocation(hide) {
+import updateLocation from '../components/MapView/geolocation';
+
+
+export function hold(hide) {
   return {
-    // type: 'updateLocation',
+    type: 'updating_location',
     // payload: {
     //   latitude: hide,
     //   longitude:

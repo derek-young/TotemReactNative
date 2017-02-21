@@ -7,6 +7,7 @@ import FBSDK, { LoginManager } from 'react-native-fbsdk';
 
 export default class Rabble extends React.Component {
 
+
   constructor(props){
     super(props);
     this.state = {
@@ -26,23 +27,24 @@ export default class Rabble extends React.Component {
       console.log('Error signing in', error);
     })
   }
+
   render() {
-  //   if(this.state.isLoggedIn === false) {
-  //   return (
-  //     <View style={{ flex: 1 }}>
-  //     <Text></Text>
-  //     <Text></Text>
-  //     <Text></Text>
-  //     <Text></Text>
-  //     <Text></Text>
-  //     <Text></Text>
-  //     <TouchableOpacity onPress={this._fbAuth.bind(this)}>
-  //    <Text>Login with Facebook</Text>
-  //    </TouchableOpacity>
-  //     </View>
-  //   );
-  // }
-  // else {
+    if(this.state.isLoggedIn === false) {
+    return (
+      <View style={{ flex: 1 }}>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
+      <TouchableOpacity onPress={this._fbAuth.bind(this)}>
+     <Text>Login with Facebook</Text>
+     </TouchableOpacity>
+      </View>
+    );
+  }
+  else {
     return(
     <View style={{ flex: 1 }}>
       <Provider store={store}>
@@ -51,7 +53,7 @@ export default class Rabble extends React.Component {
     </View>
     )
   }
-  // }
+  }
 }
 
 AppRegistry.registerComponent('Rabble', () => Rabble);

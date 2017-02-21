@@ -17,25 +17,18 @@ import ChooseVenue from './components/ChooseVenue/ChooseVenue';
 import LoginForm from './components/Auth/LoginForm';
 
 class App extends React.Component {
-  state = { loggedIn: null };
 
-  componentWillMount() {
-
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ loggedIn: true });
-        geolocation();
-      } else {
-        this.setState({ loggedIn: false });
-      }
-    });
-
-    // firebase.auth().signOut() //comment this out if you're sick of logging in
+  componentDidMount() {
 
   }
 
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch();
+  }
+
   render() {
-    switch (this.state.loggedIn) {
+    switch (this.props.loggedIn) {
       case true: return (
           <Router>
             <View style={styles.container}>
@@ -60,6 +53,8 @@ class App extends React.Component {
 export default connect((store) => {
   return {
     app: store.app,
-    nav: store.nav
+    nav: store.nav,
+    rabble: store.rabble,
+    loggedIn: store.auth.loggedIn
   };
 })(App);

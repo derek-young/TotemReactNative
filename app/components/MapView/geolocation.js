@@ -1,9 +1,8 @@
 import firebase from "firebase";
 
-export default function geolocation() {
+export function geolocate() {
   function success(pos) {
-    var user = firebase.auth().currentUser
-    
+    const user = firebase.auth().currentUser
       firebase.database().ref(`users/${user.uid}/coordinates`).set({
         latitude: pos.coords.latitude,
         longitude: pos.coords.longitude
@@ -17,8 +16,19 @@ export default function geolocation() {
   const options = {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 0
+    maximumAge: 60000
   };
 
   navigator.geolocation.watchPosition(success, error, options);
 }
+
+
+export function updateLocation() {
+  const user = firebase.auth().currentUser
+  return (dispatch) => {
+    firebase.database().ref().child('users')
+      .on('value', snapshot => { console.log(snapshot.val())
+        // dispatch({ type: 'updating_location', payload: snapshot.val() });
+      });
+  };
+};
