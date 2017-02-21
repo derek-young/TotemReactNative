@@ -12,8 +12,16 @@ const MapViewer = () => (
         longitude: -122.49427,
         latitudeDelta: 0.0222,
         longitudeDelta: 0.0121,
-      }}
-    />
+      }} >
+      <MapView.Marker
+        coordinate={{
+          latitude: 37.76757,
+          longitude: -122.49427
+        }}
+        title={"Pat"}
+        description={"Land's End"}
+      />
+    </MapView>
   </View>
 );
 
