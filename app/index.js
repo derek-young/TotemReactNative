@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Route, MemoryRouter as Router } from 'react-router';
 import store from './store.js';
 import styles from './styles';
-import * as firebase from 'firebase';
+import firebase from './firebase';
 import { Spinner } from './components/common';
 import geolocation from './components/MapView/geolocation'
 import NavMenu from './components/Nav/NavMenu';
@@ -19,26 +19,17 @@ class App extends React.Component {
   state = { loggedIn: null };
 
   componentWillMount() {
-    firebase.initializeApp({
-      apiKey: "AIzaSyBYzcVnUFZiLsR-XDhCKWMNVVw4sEN3syc",
-      authDomain: "rabble-984ed.firebaseapp.com",
-      databaseURL: "https://rabble-984ed.firebaseio.com",
-      storageBucket: "rabble-984ed.appspot.com",
-      messagingSenderId: "869569787907"
-    });
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
-
         geolocation();
-
       } else {
         this.setState({ loggedIn: false });
       }
     });
 
-    firebase.auth().signOut() //comment this out if you're sick of logging in
+    // firebase.auth().signOut() //comment this out if you're sick of logging in
 
   }
 
