@@ -6,6 +6,7 @@ const defaults = {
     { path: '/agenda', label: 'Personal Agenda'},
     { path: '/schedule', label: 'Schedule/Set List'},
     { path: '/emergency', label: 'Emergency Info'},
+    { path: '/choosevenue', label: 'Choose Venue'},
     { path: '/create', label: 'Create Group'},
     { path: '/invite', label: 'Invite Friends'},
   ]

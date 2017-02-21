@@ -4,6 +4,7 @@ import ButtonFull from '../common/ButtonFull';
 import styles from '../../styles';
 import store from '../../store';
 import api from '../../apiHelpers';
+import firebase from '../../firebase';
 
 export default class CreateGroup extends Component {
   constructor(props) {
@@ -19,13 +20,16 @@ export default class CreateGroup extends Component {
     const groupName = this.state.text;
 
     if (groupName !== '') {
-      api.post(url + '/api/group', JSON.stringify({
-        userId: userFbId,
-        groupName: groupName
-      }))
-      .then((groupId) => {
-        console.log(groupId);
-      });
+      const db = firebase.database();
+      const groupKey = db.ref().child('groups').push().key;
+      const updates = {};
+
+      updates['/groups/' + groupKey] = {
+        name: 'Ballers'
+      };
+
+      db.ref().update(updates);
+      
     }
   }
 
