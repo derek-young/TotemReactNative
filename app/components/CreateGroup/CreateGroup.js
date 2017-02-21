@@ -23,18 +23,13 @@ export default class CreateGroup extends Component {
       const db = firebase.database();
       const groupKey = db.ref().child('groups').push().key;
       const updates = {};
+
       updates['/groups/' + groupKey] = {
         name: 'Ballers'
       };
 
       db.ref().update(updates);
-      // api.post(url + '/api/group', JSON.stringify({
-      //   userId: userFbId,
-      //   groupName: groupName
-      // }))
-      // .then((groupId) => {
-      //   console.log(groupId);
-      // });
+      
     }
   }
 

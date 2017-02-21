@@ -13,6 +13,7 @@ import Rabble from './components/Rabble/Rabble';
 import VenueSchedule from './components/VenueSchedule/VenueSchedule';
 import InviteFriends from './components/InviteFriends/InviteFriends';
 import CreateGroup from './components/CreateGroup/CreateGroup';
+import ChooseVenue from './components/ChooseVenue/ChooseVenue';
 import LoginForm from './components/Auth/LoginForm';
 
 class App extends React.Component {
@@ -52,6 +53,7 @@ class App extends React.Component {
               <Route path="/agenda" component={() => <View><Text>User Schedule Holder</Text></View>}/>
               <Route path="/schedule" component={VenueSchedule}/>
               <Route path="/emergency" component={() => <View><Text>Emergency Info Holder</Text></View>}/>
+              <Route path="/choosevenue" component={ChooseVenue}/>
               <Route path="/create" component={CreateGroup}/>
               <Route path="/invite" component={InviteFriends}/>
             </View>
