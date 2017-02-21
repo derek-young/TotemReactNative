@@ -3,10 +3,10 @@ import { Text, TouchableOpacity } from 'react-native';
 import styles from '../../styles';
 import localStyles from './ChooseVenueStyles';
 
-export default ({ venue, selectVenue }) => (
+export default ({ venue, select }) => (
   <TouchableOpacity
     style={localStyles.selection}
-    onPress={(e) => selectVenue(venue.id)}>
+    onPress={() => select(venue.id, venue.name)}>
     <Text style={styles.textMed}>{venue.name}</Text>
     <Text style={localStyles.textSm}>
       {
