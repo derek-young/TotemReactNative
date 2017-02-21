@@ -5,7 +5,7 @@ export default StyleSheet.create({
   main: {
     marginTop: 10,
     alignItems:'center',
-    justifyContent: 'center',
+    flex: 1,
   },
   input: {
     height: 30,
@@ -15,7 +15,7 @@ export default StyleSheet.create({
     borderRadius: 3
   },
   section: {
-    height: 100,
+    height: 70,
     padding: 5,
     alignItems: 'center',
     justifyContent: 'center',
@@ -31,4 +31,15 @@ export default StyleSheet.create({
     color: 'lightgrey',
     fontSize: 16
   },
+  selection: {
+    width: Dimensions.get('window').width * 0.9,
+    padding: 5,
+    backgroundColor: 222222,
+    borderWidth: 1,
+    borderRadius: 3,
+  },
+  fixedBottom: {
+    position: 'absolute',
+    bottom: 0
+  }
 });
