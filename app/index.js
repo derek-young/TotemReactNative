@@ -9,7 +9,7 @@ import { Spinner } from './components/common';
 import geolocation from './components/MapView/geolocation'
 import NavMenu from './components/Nav/NavMenu';
 import MapViewer from './components/MapView/MapView';
-import Rabble from './components/Rabble/Rabble';
+import Group from './components/Group/Group';
 import VenueSchedule from './components/VenueSchedule/VenueSchedule';
 import InviteFriends from './components/InviteFriends/InviteFriends';
 import CreateGroup from './components/CreateGroup/CreateGroup';
@@ -41,7 +41,7 @@ class App extends React.Component {
             <View style={styles.container}>
               <NavMenu dispatch={this.props.dispatch}/>
               <Route exact path="/" component={MapViewer}/>
-              <Route path="/rabble" component={() => (<Rabble dispatch={this.props.dispatch}/>)}/>
+              <Route path="/group" component={() => (<Group dispatch={this.props.dispatch}/>)}/>
               <Route path="/agenda" component={() => <View><Text>User Schedule Holder</Text></View>}/>
               <Route path="/schedule" component={VenueSchedule}/>
               <Route path="/emergency" component={() => <View><Text>Emergency Info Holder</Text></View>}/>
@@ -60,7 +60,6 @@ class App extends React.Component {
 export default connect((store) => {
   return {
     app: store.app,
-    nav: store.nav,
-    rabble: store.rabble
+    nav: store.nav
   };
 })(App);

@@ -2,7 +2,7 @@ const defaults = {
   fullMenu: false,
   menuItems: [
     { path: '/', label: 'Map' },
-    { path: '/rabble', label: 'Rabble'},
+    { path: '/group', label: 'Rabble'},
     { path: '/agenda', label: 'Personal Agenda'},
     { path: '/schedule', label: 'Schedule/Set List'},
     { path: '/emergency', label: 'Emergency Info'},

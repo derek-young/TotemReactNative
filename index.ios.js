@@ -15,7 +15,7 @@ export default class Rabble extends React.Component {
   }
   _fbAuth(){
     var context = this;
-    LoginManager.logInWithReadPermissions(['public_profile']).then(function(results){
+    LoginManager.logInWithReadPermissions(['public_profile']).then(function(result){
         context.setState({isLoggedIn: true})
       if(result.isCancelled) {
         console.log('Log in cancelled')
@@ -27,22 +27,22 @@ export default class Rabble extends React.Component {
     })
   }
   render() {
-    if(this.state.isLoggedIn === false) {
-    return (
-      <View style={{ flex: 1 }}>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <TouchableOpacity onPress={this._fbAuth.bind(this)}>
-     <Text>Login with Facebook</Text>
-     </TouchableOpacity>
-      </View>
-    );
-  }
-  else {
+  //   if(this.state.isLoggedIn === false) {
+  //   return (
+  //     <View style={{ flex: 1 }}>
+  //     <Text></Text>
+  //     <Text></Text>
+  //     <Text></Text>
+  //     <Text></Text>
+  //     <Text></Text>
+  //     <Text></Text>
+  //     <TouchableOpacity onPress={this._fbAuth.bind(this)}>
+  //    <Text>Login with Facebook</Text>
+  //    </TouchableOpacity>
+  //     </View>
+  //   );
+  // }
+  // else {
     return(
     <View style={{ flex: 1 }}>
       <Provider store={store}>
@@ -51,8 +51,7 @@ export default class Rabble extends React.Component {
     </View>
     )
   }
-  }
+  // }
 }
 
 AppRegistry.registerComponent('Rabble', () => Rabble);
-

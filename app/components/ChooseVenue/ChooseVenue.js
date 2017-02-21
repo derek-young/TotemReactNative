@@ -24,11 +24,11 @@ class ChooseVenue extends Component {
   render() {
     console.log(this.props);
     return (
-      <View style={localStyles.main}>
+      <View style={styles.main}>
         <Text style={styles.h2}>Choose a Venue</Text>
         <View style={localStyles.section}>
           <TextInput
-            style={localStyles.input}
+            style={styles.input}
             onChangeText={(text) => this.props.dispatch(updateText(text))}
             value={this.props.text}
             placeholder="Search"
