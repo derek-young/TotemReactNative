@@ -16,15 +16,9 @@ export default class Rabble extends React.Component {
   }
   _fbAuth(){
     var context = this;
-<<<<<<< HEAD
-    LoginManager.logInWithReadPermissions(['public_profile', 'user_friends']).then(function(results){
-      context.setState({isLoggedIn: true})
-      if(results.isCancelled) {
-=======
     LoginManager.logInWithReadPermissions(['public_profile']).then(function(result){
         context.setState({isLoggedIn: true})
       if(result.isCancelled) {
->>>>>>> 7941342fd35073507179b39eac523df6f116f064
         console.log('Log in cancelled')
       } else {
         console.log('Login Successful')
