@@ -57,14 +57,27 @@ export default class ChooseVenue extends Component {
   render() {
     return (
       <View style={localStyles.main}>
-        <Text style={styles.textMed}>Choose a Venue</Text>
-        <View style={localStyles.row}>
-          <Text style={styles.textSm}>Search: </Text>
+        <Text style={styles.h2}>Choose a Venue</Text>
+        <View style={localStyles.section}>
           <TextInput
             style={localStyles.input}
             onChangeText={(text) => this.setState({text})}
             value={this.state.text}
+            placeholder="Search"
           />
+        </View>
+        <View style={localStyles.section}>
+          <Text style={localStyles.textSm}>Nearby</Text>
+          {this.state.nearby.map((venue) => (
+            <View style={localStyles.row}>
+              <Text>{venue.name}</Text>
+              <Text>{venue.address.line1}</Text>
+              <Text>{venue.address.line2}</Text>
+              <Text>{venue.address.city}</Text>
+              <Text>{venue.address.state}</Text>
+              <Text>{venue.address.zip}</Text>
+            </View>
+          ))}
         </View>
       </View>
     );
