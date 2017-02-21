@@ -16,7 +16,6 @@ import CreateGroup from './components/CreateGroup/CreateGroup';
 import LoginForm from './components/Auth/LoginForm';
 
 class App extends React.Component {
-  state = { loggedIn: null };
 
   componentWillMount() {
     firebase.initializeApp({
@@ -27,18 +26,20 @@ class App extends React.Component {
       messagingSenderId: "869569787907"
     });
 
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ loggedIn: true });
+    console.log('props', this.props)
 
-        geolocation();
+    // firebase.auth().onAuthStateChanged((user) => {
+    //   if (user) {
+    //     this.setState({ loggedIn: true });
 
-      } else {
-        this.setState({ loggedIn: false });
-      }
-    });
+    //     geolocation();
 
-    firebase.auth().signOut() //comment this out if you're sick of logging in
+    //   } else {
+    //     this.setState({ loggedIn: false });
+    //   }
+    // });
+
+    // firebase.auth().signOut() //comment this out if you're sick of logging in
 
   }
 
@@ -51,7 +52,7 @@ class App extends React.Component {
   }
 
   render() {
-    switch (this.state.loggedIn) {
+    switch (this.props.loggedIn) {
       case true: return (
           <Router>
             <View style={styles.container}>
@@ -76,6 +77,7 @@ export default connect((store) => {
   return {
     app: store.app,
     nav: store.nav,
-    rabble: store.rabble
+    rabble: store.rabble,
+    loggedIn: store.auth.loggedIn
   };
 })(App);

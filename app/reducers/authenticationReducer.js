@@ -3,7 +3,8 @@ const defaults = {
   password: '',
   user: null,
   error: '',
-  loading: false
+  loading: false,
+  loggedIn: false
 };
 
 export default (state = defaults, action) => {
@@ -15,7 +16,7 @@ export default (state = defaults, action) => {
     case 'login_user':
       return { ...state, loading: true, error: '' };
     case 'login_user_success':
-      return { ...state, ...defaults, user: action.payload };
+      return { ...state, ...defaults, user: action.payload, loggedIn: true };
     case 'login_user_fail':
       return { ...state, error: 'Authentication Failed.', password: '', loading: false };
     default:
