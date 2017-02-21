@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import { geolocate } from '../components/MapView/geolocation'
+import { geolocate, updateLocation } from '../components/MapView/geolocation'
 export const emailChanged = (text) => {
   return {
     type: 'email_changed',
@@ -22,6 +22,7 @@ export const loginUser = ({ email, password }) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
       .then(geolocate())
+      .then(updateLocation())
       .catch((error) => {
         console.log(error);
 

@@ -43,7 +43,7 @@ class App extends React.Component {
             </View>
           </Router>
         );
-      case undefined: return <LoginForm />;
+      case false: return <LoginForm />;
       default: return <Spinner size="large" />;
     }
   }
