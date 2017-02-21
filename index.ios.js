@@ -3,21 +3,21 @@ import { AppRegistry, View, Text, TouchableOpacity } from 'react-native';
 import { Provider } from 'react-redux';
 import App from './app/index';
 import store from './app/store.js';
-import FBSDK, { LoginManager } from 'react-native-fbsdk';
+import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 export default class Rabble extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: true
     }
   }
   _fbAuth(){
     var context = this;
-    LoginManager.logInWithReadPermissions(['public_profile']).then(function(results){
-        context.setState({isLoggedIn: true})
-      if(result.isCancelled) {
+    LoginManager.logInWithReadPermissions(['public_profile', 'user_friends']).then(function(results){
+      context.setState({isLoggedIn: true})
+      if(results.isCancelled) {
         console.log('Log in cancelled')
       } else {
         console.log('Login Successful')

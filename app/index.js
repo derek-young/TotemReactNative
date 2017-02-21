@@ -18,9 +18,7 @@ import LoginForm from './components/Auth/LoginForm';
 
 class App extends React.Component {
   state = { loggedIn: null };
-
   componentWillMount() {
-
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
