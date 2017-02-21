@@ -26,6 +26,11 @@ export default StyleSheet.create({
     height: 1,
     backgroundColor: '#d3d3d3'
   },
+  h2: {
+    color: '#1cafff',
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
   textMed: {
     color: '#1cafff',
     fontSize: 20
