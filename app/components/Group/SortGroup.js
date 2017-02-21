@@ -1,23 +1,23 @@
 import React from 'react';
 import { Image, Text, TouchableHighlight, View } from 'react-native';
-import rabbleStyles from './RabbleStyles';
-import { sortRabble } from '../../actions/rabbleActions'
+import localStyles from './GroupStyles';
+import { sortGroup } from '../../actions/groupActions'
 
-const SortRabble = ({ dispatch }) => (
-  <View style={rabbleStyles.sort_row}>
+const SortGroup = ({ dispatch }) => (
+  <View style={localStyles.sort_row}>
     <TouchableHighlight
-      style={rabbleStyles.sort_item}
-      onPress={() => dispatch(sortRabble(sortAZ))}>
+      style={localStyles.sort_item}
+      onPress={() => dispatch(sortGroup(sortAZ))}>
       <Image source={require('../../img/a-z-icon.png')}/>
     </TouchableHighlight>
     <TouchableHighlight
-      style={rabbleStyles.sort_item}
-      onPress={() => dispatch(sortRabble(sortGeofence))}>
+      style={localStyles.sort_item}
+      onPress={() => dispatch(sortGroup(sortGeofence))}>
       <Image source={require('../../img/fence-icon.png')}/>
     </TouchableHighlight>
     <TouchableHighlight
-      style={rabbleStyles.sort_item}
-      onPress={() => dispatch(sortRabble(sortProximity))}>
+      style={localStyles.sort_item}
+      onPress={() => dispatch(sortGroup(sortProximity))}>
       <Image source={require('../../img/radar-icon.png')}/>
     </TouchableHighlight>
   </View>
@@ -38,4 +38,4 @@ function sortProximity(a, b) {
 }
 
 
-export default SortRabble;
+export default SortGroup;

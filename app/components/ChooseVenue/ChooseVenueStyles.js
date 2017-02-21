@@ -2,18 +2,6 @@ import { StyleSheet } from 'react-native';
 import Dimensions from 'Dimensions';
 
 export default StyleSheet.create({
-  main: {
-    marginTop: 10,
-    alignItems:'center',
-    flex: 1,
-  },
-  input: {
-    height: 30,
-    width: 130,
-    padding: 5,
-    backgroundColor: 'lightgray',
-    borderRadius: 3
-  },
   section: {
     height: 70,
     padding: 5,

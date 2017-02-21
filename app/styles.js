@@ -1,10 +1,16 @@
 import { StyleSheet } from 'react-native';
+import Dimensions from 'Dimensions';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 30,
     backgroundColor: '#393D3F',
-    marginTop: 30
+  },
+  main: {
+    flex: 1,
+    marginTop: 10,
+    alignItems:'center',
   },
   welcome: {
     fontSize: 20,
@@ -40,5 +46,12 @@ export default StyleSheet.create({
     height: 70,
     alignItems: 'center',
     justifyContent: 'center'
-  }
+  },
+  input: {
+    height: 30,
+    width: Dimensions.get('window').width * 0.7,
+    padding: 5,
+    backgroundColor: 'lightgray',
+    borderRadius: 3
+  },
 });
