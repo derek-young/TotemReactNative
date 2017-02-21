@@ -1,6 +1,6 @@
 import firebase from "firebase";
 
-export function geolocation() {
+export function geolocate() {
   function success(pos) {
     const user = firebase.auth().currentUser
       firebase.database().ref(`users/${user.uid}/coordinates`).set({
@@ -19,17 +19,17 @@ export function geolocation() {
   const options = {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 0
+    maximumAge: 60000
   };
 
-  navigator.geolocation.watchLocation(success, error, options);
+  navigator.geolocation.watchPosition(success, error, options);
 }
 
 
 export function updateLocation() {
   const user = firebase.auth().currentUser
   return (dispatch) => {
-    firebase.database().ref(`/users/${user.uid}/coordinates`)
+    firebase.database().ref().child('users')
       .on('value', snapshot => {
         dispatch({ type: 'updating_location', payload: snapshot.val() });
       });

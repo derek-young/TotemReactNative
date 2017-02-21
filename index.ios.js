@@ -7,42 +7,43 @@ import FBSDK, { LoginManager } from 'react-native-fbsdk';
 
 export default class Rabble extends React.Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      isLoggedIn: false
-    }
-  }
-  _fbAuth(){
-    var context = this;
-    LoginManager.logInWithReadPermissions(['public_profile']).then(function(results){
-        context.setState({isLoggedIn: true})
-      if(result.isCancelled) {
-        console.log('Log in cancelled')
-      } else {
-        console.log('Login Successful')
-      }
-    }, function(error){
-      console.log('Error signing in', error);
-    })
-  }
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     isLoggedIn: false
+  //   }
+  // }
+  // _fbAuth(){
+  //   var context = this;
+  //   console.log('Login Manager', LoginManager)
+  //   LoginManager.logInWithReadPermissions(['public_profile']).then(function(results){
+  //       context.setState({isLoggedIn: true})
+  //     if(result.isCancelled) {
+  //       console.log('Log in cancelled')
+  //     } else {
+  //       console.log('Login Successful')
+  //     }
+  //   }, function(error){
+  //     console.log('Error signing in', error);
+  //   })
+  // }
   render() {
-    if(this.state.isLoggedIn === false) {
-    return (
-      <View style={{ flex: 1 }}>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <TouchableOpacity onPress={this._fbAuth.bind(this)}>
-     <Text>Login with Facebook</Text>
-     </TouchableOpacity>
-      </View>
-    );
-  }
-  else {
+  //   if(this.state.isLoggedIn === false) {
+  //   return (
+  //     <View style={{ flex: 1 }}>
+  //     <Text></Text>
+  //     <Text></Text>
+  //     <Text></Text>
+  //     <Text></Text>
+  //     <Text></Text>
+  //     <Text></Text>
+  //     <TouchableOpacity onPress={this._fbAuth.bind(this)}>
+  //    <Text>Login with Facebook</Text>
+  //    </TouchableOpacity>
+  //     </View>
+  //   );
+  // }
+  // else {
     return(
     <View style={{ flex: 1 }}>
       <Provider store={store}>
@@ -51,7 +52,7 @@ export default class Rabble extends React.Component {
     </View>
     )
   }
-  }
+  // }
 }
 
 AppRegistry.registerComponent('Rabble', () => Rabble);
