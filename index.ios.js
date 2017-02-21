@@ -7,6 +7,7 @@ import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 export default class Rabble extends React.Component {
 
+
   constructor(props){
     super(props);
     this.state = {
@@ -15,9 +16,15 @@ export default class Rabble extends React.Component {
   }
   _fbAuth(){
     var context = this;
+<<<<<<< HEAD
     LoginManager.logInWithReadPermissions(['public_profile', 'user_friends']).then(function(results){
       context.setState({isLoggedIn: true})
       if(results.isCancelled) {
+=======
+    LoginManager.logInWithReadPermissions(['public_profile']).then(function(result){
+        context.setState({isLoggedIn: true})
+      if(result.isCancelled) {
+>>>>>>> 7941342fd35073507179b39eac523df6f116f064
         console.log('Log in cancelled')
       } else {
         console.log('Login Successful')
@@ -26,6 +33,7 @@ export default class Rabble extends React.Component {
       console.log('Error signing in', error);
     })
   }
+
   render() {
     if(this.state.isLoggedIn === false) {
     return (
@@ -55,4 +63,3 @@ export default class Rabble extends React.Component {
 }
 
 AppRegistry.registerComponent('Rabble', () => Rabble);
-

@@ -9,7 +9,7 @@ import { Spinner } from './components/common';
 import geolocation from './components/MapView/geolocation'
 import NavMenu from './components/Nav/NavMenu';
 import MapViewer from './components/MapView/MapView';
-import Rabble from './components/Rabble/Rabble';
+import Group from './components/Group/Group';
 import VenueSchedule from './components/VenueSchedule/VenueSchedule';
 import InviteFriends from './components/InviteFriends/InviteFriends';
 import CreateGroup from './components/CreateGroup/CreateGroup';
@@ -17,6 +17,7 @@ import ChooseVenue from './components/ChooseVenue/ChooseVenue';
 import LoginForm from './components/Auth/LoginForm';
 
 class App extends React.Component {
+
   state = { loggedIn: null };
   componentWillMount() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -30,24 +31,23 @@ class App extends React.Component {
 
     // firebase.auth().signOut() //comment this out if you're sick of logging in
 
-  }
+  // componentDidMount() {
 
-  componentDidMount() {
-    // const rootRef = firebase.database().ref().child('react');
-    // const locRef = rootRef.child('rabble_loc');
-    // locRef.on('value', snap => {
-    //   rabble_loc: snap.val();
-    // })
+  // }
+
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch();
   }
 
   render() {
-    switch (this.state.loggedIn) {
+    switch (this.props.loggedIn) {
       case true: return (
           <Router>
             <View style={styles.container}>
               <NavMenu dispatch={this.props.dispatch}/>
               <Route exact path="/" component={MapViewer}/>
-              <Route path="/rabble" component={() => (<Rabble dispatch={this.props.dispatch}/>)}/>
+              <Route path="/group" component={() => (<Group dispatch={this.props.dispatch}/>)}/>
               <Route path="/agenda" component={() => <View><Text>User Schedule Holder</Text></View>}/>
               <Route path="/schedule" component={VenueSchedule}/>
               <Route path="/emergency" component={() => <View><Text>Emergency Info Holder</Text></View>}/>
@@ -67,6 +67,7 @@ export default connect((store) => {
   return {
     app: store.app,
     nav: store.nav,
-    rabble: store.rabble
+    rabble: store.rabble,
+    loggedIn: store.auth.loggedIn
   };
 })(App);

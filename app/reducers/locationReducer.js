@@ -10,11 +10,10 @@ const defaults = {
   ]
 };
 
-export default function appReducer(state = defaults, action) {
+export default function locationReducer(state = defaults, action) {
   switch(action.type) {
-    case 'rabble_sort': {
-      const sortedRabble = state.rabble.sort(action.payload.method);
-      return {...state, rabble: sortedRabble};
+    case 'updating_location': {
+      return {...state, coordinates: action.payload};
     }
   }
   return state;
