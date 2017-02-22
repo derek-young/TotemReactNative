@@ -23,22 +23,37 @@ class MapViewer extends React.Component {
             latitudeDelta: 0.0222,
             longitudeDelta: 0.0121,
           }} >
-          <MapView.Marker
-            coordinate={{
-              latitude: 37.76757,
-              longitude: -122.49427
-            }}
-            title={"Pat"}
-            description={"Land's End"}
-          />
+          {this.props.geoFences.map((geoFence) => (
+            <MapView.Circle
+              center = {{
+                latitude: geoFence.latitude,
+                longitude: geoFence.longitude
+              }}
+              radius={geoFence.radius}
+              fillColor="rgba(0, 0, 0, 0.2)"
+              strokeColor="rgba(0, 0, 0, 0.2)"
+            />
+          ))}
+          {this.props.geoFences.map((geoFence) => (
+            <MapView.Marker
+              coordinate={{
+                latitude: geoFence.latitude,
+                longitude: geoFence.longitude
+              }}
+              title={"Lands End Stage"}
+            />
+          ))}
+          {this.props.users.map((user) => (
+            <MapView.Marker
+              coordinate={{
+                latitude: user.coordinates.latitude,
+                longitude: user.coordinates.longitude
+              }}
+              title={user.name}
+              description={"Add code to determine stage"}
+            />
+          ))}
         </MapView>
-        <MapView.Circle
-          center = {{
-            latitude: 37.76766,
-            longitude: -122.49479
-          }}
-          radius={50}
-        />
       </View>
     );
   }
@@ -53,7 +68,8 @@ const styles = StyleSheet.create({
 
 export default connect((store) => {
   return {
+    user: store.auth.user.uid,
     users: store.location.users,
-    user: store.auth.user.uid
+    geoFences: store.location.geoFences,
   };
 })(MapViewer);
