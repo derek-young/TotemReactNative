@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Text, TouchableHighlight, View } from 'react-native';
 import localStyles from './GroupStyles';
-import { sortGroup } from '../../actions/groupActions'
+import { sortUsers } from '../../actions/locationActions'
 
 const SortGroup = ({ dispatch }) => (
   <View style={localStyles.sort_row}>
