@@ -3,12 +3,12 @@ import app from './appReducer';
 import nav from './navReducer';
 import auth from './authenticationReducer';
 import venues from './venueReducer';
-import locations from './locationReducer';
+import location from './locationReducer';
 
 export default combineReducers({
   app,
   nav,
   auth,
   venues,
-  locations
+  location
 });

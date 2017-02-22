@@ -1,23 +1,49 @@
 import updateLocation from '../components/MapView/geolocation';
+import firebase from '../firebase';
 
-
-export function hold(hide) {
+export function sortUsers(method) {
   return {
-    type: 'updating_location',
-    // payload: {
-    //   latitude: hide,
-    //   longitude:
-    // }
+    type: 'users_sort',
+    payload: { method }
   }
 }
 
-export function sortGroup(method) {
+export function updateUsers(users) {
+  console.log('users updated', users);
   return {
-    type: 'users_sort',
-    payload: {
-      method: method
-    }
+    type: 'updating_location',
+    payload: { users }
   }
+}
+
+export function getGroupLoc() {
+  return firebase.database().ref().child('users')
+  .on('value', snapshot => {
+    return snapshot.val();
+  });
+};
+
+export function geolocate() {
+  function success(pos) {
+    console.log(pos.coords);
+    const user = firebase.auth().currentUser
+      firebase.database().ref(`users/${user.uid}/coordinates`).set({
+        latitude: pos.coords.latitude,
+        longitude: pos.coords.longitude
+      });
+  }
+
+  function error(err) {
+    console.warn('ERROR(' + err.code + '): ' + err.message);
+  }
+
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 60000
+  };
+
+  navigator.geolocation.watchPosition(success, error, options);
 }
 
 export function getGeofence(coordinates, geoFences) {
