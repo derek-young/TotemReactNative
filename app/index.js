@@ -17,12 +17,6 @@ import ChooseVenue from './components/ChooseVenue/ChooseVenue';
 import LoginForm from './components/Auth/LoginForm';
 
 class App extends React.Component {
-
-  componentDidMount() {
-
-  }
-
-
   componentWillUnmount() {
     navigator.geolocation.clearWatch();
   }

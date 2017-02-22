@@ -2,6 +2,7 @@ import firebase from "firebase";
 
 export function geolocate() {
   function success(pos) {
+    console.log(pos.coords);
     const user = firebase.auth().currentUser
       firebase.database().ref(`users/${user.uid}/coordinates`).set({
         latitude: pos.coords.latitude,
