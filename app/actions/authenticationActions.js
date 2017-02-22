@@ -21,8 +21,15 @@ export const loginUser = ({ email, password }) => {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
-      .then(geolocate())
-      .then(updateLocation())
+      .then(() => geolocate())
+      .then(
+
+      firebase.database().ref().child('users')
+        .on('value', snapshot => { //console.log(snapshot.val())
+           dispatch({ type: 'updating_location', payload: snapshot.val() });
+        }))
+
+
       .catch((error) => {
         console.log(error);
 

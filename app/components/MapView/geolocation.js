@@ -27,8 +27,8 @@ export function updateLocation() {
   const user = firebase.auth().currentUser
   return (dispatch) => {
     firebase.database().ref().child('users')
-      .on('value', snapshot => { console.log(snapshot.val())
-        // dispatch({ type: 'updating_location', payload: snapshot.val() });
+      .on('value', snapshot => { //console.log(snapshot.val())
+         dispatch({ type: 'updating_location', payload: snapshot.val() });
       });
   };
 };
