@@ -2,12 +2,6 @@ import { StyleSheet } from 'react-native';
 import Dimensions from 'Dimensions';
 
 export default StyleSheet.create({
-  main: {
-    height: 70,
-    padding: 5,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
    maintext: {
     color: '#1cafff',
     fontSize: 25
@@ -24,21 +18,25 @@ export default StyleSheet.create({
     height: 20,
     marginRight: 5
   },
-  button: {
-    width: Dimensions.get('window').width,
-    backgroundColor: '#222222',
-    height: 70,
-    alignItems: 'center',
-    justifyContent: 'center'
+  dayBar: {
+    flexDirection: 'row', 
   },
-  sort_row: {
-    height: 60,
-    flexDirection: 'row',
-    backgroundColor: '#222222'
+  viewMargin: {
+    margin: 20
   },
-  sort_item: {
-    width: Dimensions.get('window').width / 3,
+  center: {
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    padding: 20
+  },
+    textSm: {
+    color: 'lightgrey',
+    fontSize: 16
+  },
+  selection: {
+    width: Dimensions.get('window').width * 0.9,
+    padding: 5,
+    backgroundColor: 222222,
+    borderWidth: 1,
+    borderRadius: 3,
+  } 
 });
