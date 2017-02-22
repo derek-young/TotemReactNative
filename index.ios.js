@@ -20,9 +20,9 @@ export default class Rabble extends React.Component {
     if(this.state.isLoggedIn === false) {
     return (
       <View style={styles.login}>
-      <TouchableOpacity onPress={fbAuth.bind(this)}>
-     <Text>Login with Facebook</Text>
-     </TouchableOpacity>
+        <TouchableOpacity onPress={fbAuth.bind(this)}>
+        <Text>Login with Facebook</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -30,21 +30,12 @@ export default class Rabble extends React.Component {
     return(
     <View style={{ flex: 1 }}>
       <Provider store={store}>
-      <App />
+        <App />
       </Provider>
     </View>
     )
   }
   }
-}
-
-function fn(){for(var _len=arguments.length,args=Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}
-  return new Promise(function(resolve,reject){
-    BatchedBridge.enqueueNativeCall(moduleID,methodID,args,
-      function(data){return resolve(data);},
-      function(errorData){return reject(createErrorFromErrorData(errorData));
-    });
-  });
 }
 
 AppRegistry.registerComponent('Rabble', () => Rabble);
