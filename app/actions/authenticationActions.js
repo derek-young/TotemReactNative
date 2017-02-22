@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-import { geolocate, updateLocation } from '../components/MapView/geolocation'
+import { geolocate, getGroupLoc, updatedUsers } from '../actions/locationActions';
 import FBSDK, { LoginManager, AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 export const emailChanged = (text) => {
   return {
@@ -21,23 +21,13 @@ export const loginUser = ({ email, password }) => {
     dispatch({ type: 'login_user' });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(user => loginUserSuccess(dispatch, user))
-      .then(() => geolocate())
-      .then(
-
-      firebase.database().ref().child('users')
-        .on('value', snapshot => { //console.log(snapshot.val())
-           dispatch({ type: 'updating_location', payload: snapshot.val() });
-        }))
-
-
-      .catch((error) => {
-        console.log(error);
-
-        // firebase.auth().createUserWithEmailAndPassword(email, password)
-        //   .then(user => loginUserSuccess(dispatch, user))
-        //   .catch(() => loginUserFail(dispatch));
-      });
+    .then(user => loginUserSuccess(dispatch, user))
+    .then(geolocate)
+    .then(getGroupLoc)
+    .then((users) => dispatch(updateUsers(users)))
+    .catch((error) => {
+      console.log(error);
+    });
   };
 };
 
@@ -93,7 +83,7 @@ export const fbAuth = (dispatch) => {
             },
             responseInfoCallback
           );
-          new GraphRequestManager().addRequest(infoRequest).start()  
+          new GraphRequestManager().addRequest(infoRequest).start()
         })
       }
     }, function(error){

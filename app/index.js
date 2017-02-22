@@ -16,25 +16,6 @@ import InviteFriends from './components/InitConfig/InviteFriends';
 import CreateGroup from './components/InitConfig/CreateGroup';
 
 class App extends React.Component {
-
-  state = { loggedIn: null };
-  componentWillMount() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ loggedIn: true });
-        geolocation();
-      } else {
-        this.setState({ loggedIn: false });
-      }
-    });
-  }
-
-    // firebase.auth().signOut() //comment this out if you're sick of logging in
-
-  // componentDidMount() {
-
-  // }
-
   componentWillUnmount() {
     navigator.geolocation.clearWatch();
   }
@@ -45,7 +26,13 @@ class App extends React.Component {
         <View style={styles.container}>
           <NavMenu dispatch={this.props.dispatch}/>
           <Route exact path="/" component={MapViewer}/>
-          <Route path="/group" component={() => (<Group dispatch={this.props.dispatch}/>)}/>
+          <Route path="/group" component={() => (
+            <Group
+              dispatch={this.props.dispatch}
+              users={this.props.location.users}
+              userFbId={this.props.app.fbId}
+            />
+          )}/>
           <Route path="/agenda" component={() => <View><Text>User Schedule Holder</Text></View>}/>
           <Route path="/schedule" component={VenueSchedule}/>
           <Route path="/emergency" component={() => <View><Text>Emergency Info Holder</Text></View>}/>
@@ -61,6 +48,7 @@ class App extends React.Component {
 export default connect((store) => {
   return {
     app: store.app,
-    nav: store.nav
+    nav: store.nav,
+    location: store.location
   };
 })(App);
