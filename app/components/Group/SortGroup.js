@@ -7,17 +7,17 @@ const SortGroup = ({ dispatch }) => (
   <View style={localStyles.sort_row}>
     <TouchableHighlight
       style={localStyles.sort_item}
-      onPress={() => dispatch(sortGroup(sortAZ))}>
+      onPress={() => dispatch(sortUsers(sortAZ))}>
       <Image source={require('../../img/a-z-icon.png')}/>
     </TouchableHighlight>
     <TouchableHighlight
       style={localStyles.sort_item}
-      onPress={() => dispatch(sortGroup(sortGeofence))}>
+      onPress={() => dispatch(sortUsers(sortGeofence))}>
       <Image source={require('../../img/fence-icon.png')}/>
     </TouchableHighlight>
     <TouchableHighlight
       style={localStyles.sort_item}
-      onPress={() => dispatch(sortGroup(sortProximity))}>
+      onPress={() => dispatch(sortUsers(sortProximity))}>
       <Image source={require('../../img/radar-icon.png')}/>
     </TouchableHighlight>
   </View>

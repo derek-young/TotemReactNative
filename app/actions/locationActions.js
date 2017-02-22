@@ -11,12 +11,10 @@ export function hold(hide) {
   }
 }
 
-export function sortGroup(method) {
+export function sortUsers(method) {
   return {
     type: 'users_sort',
-    payload: {
-      method: method
-    }
+    payload: { method }
   }
 }
 

@@ -45,7 +45,13 @@ class App extends React.Component {
         <View style={styles.container}>
           <NavMenu dispatch={this.props.dispatch}/>
           <Route exact path="/" component={MapViewer}/>
-          <Route path="/group" component={() => (<Group dispatch={this.props.dispatch}/>)}/>
+          <Route path="/group" component={() => (
+            <Group
+              dispatch={this.props.dispatch}
+              users={this.props.location.users}
+              userFbId={this.props.app.fbId}
+            />
+          )}/>
           <Route path="/agenda" component={() => <View><Text>User Schedule Holder</Text></View>}/>
           <Route path="/schedule" component={VenueSchedule}/>
           <Route path="/emergency" component={() => <View><Text>Emergency Info Holder</Text></View>}/>
@@ -61,6 +67,7 @@ class App extends React.Component {
 export default connect((store) => {
   return {
     app: store.app,
-    nav: store.nav
+    nav: store.nav,
+    location: store.location
   };
 })(App);

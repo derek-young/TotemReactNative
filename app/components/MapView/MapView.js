@@ -9,8 +9,8 @@ class MapViewer extends React.Component {
     if (this.props.users && this.props.user) {
       const userID = this.props.user;
       const name = this.props.users[userID].name;
-      const lat = this.props.users[userID].coordinates.latitude; 
-      const long = this.props.users[userID].coordinates.longitude; 
+      const lat = this.props.users[userID].coordinates.latitude;
+      const long = this.props.users[userID].coordinates.longitude;
       console.log(name, lat, long);
     }
     return (
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 
 export default connect((store) => {
   return {
-    users: store.locations.users,
+    users: store.location.users,
     user: store.auth.user.uid
   };
 })(MapViewer);

@@ -6,7 +6,7 @@ import styles from '../../styles';
 import localStyles from './GroupStyles';
 
 const GroupRow = ({ friend }) => {
-  const geoFences = store.getState().app.geoFences;
+  const geoFences = store.getState().location.geoFences;
   return (
     <View>
       <View style={localStyles.main}>
