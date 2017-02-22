@@ -1,6 +1,7 @@
 const defaults = {
   api_url: 'http://localhost:8000',
   userFbId: '444der',
+  users: {},
   geoFences: [
     { name: 'Lands End Stage', type: 'venue', lat: 37.76766, long: -122.49479, radius: 50 },
     { name: 'Sutro Stage', type: 'venue', lat: 37.76992, long: -122.49341, radius: 50 },
@@ -13,7 +14,7 @@ const defaults = {
 export default function locationReducer(state = defaults, action) {
   switch(action.type) {
     case 'updating_location': {
-      return {...state, coordinates: action.payload};
+      return {...state, users: action.payload};
     }
   }
   return state;
