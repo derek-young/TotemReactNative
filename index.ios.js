@@ -3,7 +3,7 @@ import { AppRegistry, View, Text, TouchableOpacity } from 'react-native';
 import { Provider } from 'react-redux';
 import App from './app/index';
 import store from './app/store.js';
-import FBSDK, { LoginManager, AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
+import { fbAuth } from './app/actions/authenticationActions.js';
 const Manager = require('react-native').NativeModules;
 const BatchedBridge = require('BatchedBridge');
 
@@ -13,46 +13,7 @@ export default class Rabble extends React.Component {
     this.state = {
       isLoggedIn: false
     }
-  }
-  _fbAuth(){
-    var context = this;
-    LoginManager.logInWithReadPermissions(['public_profile']).then(function(result){
-        context.setState({isLoggedIn: true})
-      if(result.isCancelled) {
-        console.log('Log in cancelled')
-      } else {
-        console.log('Login Successful')
-        AccessToken.getCurrentAccessToken().then(
-        (data) => {
-          let accessToken = data.accessToken
-          console.log('TOKEN', accessToken.toString())
-
-          const responseInfoCallback = (error, result) => {
-            if(error) {
-              console.log('Error fetching data :', error.toString())
-            } else {
-              console.log('Success fetching data : ', result)
-            }
-          }
-          const infoRequest = new GraphRequest(
-            '/me',
-            {
-              accessToken: accessToken,
-              parameters: {
-                fields: {
-                  string: 'taggable_friends'
-                }
-              }
-            },
-            responseInfoCallback
-          );
-          new GraphRequestManager().addRequest(infoRequest).start()
-        //TOKEN  
-        })
-      }
-    }, function(error){
-      console.log('Error signing in', error);
-    })
+    console.log('fbAuth', fbAuth)
   }
 
   render() {
@@ -65,7 +26,7 @@ export default class Rabble extends React.Component {
       <Text></Text>
       <Text></Text>
       <Text></Text>
-      <TouchableOpacity onPress={this._fbAuth.bind(this)}>
+      <TouchableOpacity onPress={fbAuth.bind(this)}>
      <Text>Login with Facebook</Text>
      </TouchableOpacity>
       </View>
