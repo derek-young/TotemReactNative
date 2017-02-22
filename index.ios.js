@@ -2,6 +2,7 @@ import React from 'react';
 import { AppRegistry, View, Text, TouchableOpacity } from 'react-native';
 import { Provider } from 'react-redux';
 import App from './app/index';
+import styles from './app/styles';
 import store from './app/store.js';
 import { fbAuth } from './app/actions/authenticationActions.js';
 const Manager = require('react-native').NativeModules;
@@ -13,19 +14,12 @@ export default class Rabble extends React.Component {
     this.state = {
       isLoggedIn: false
     }
-    console.log('fbAuth', fbAuth)
   }
 
   render() {
     if(this.state.isLoggedIn === false) {
     return (
-      <View style={{ flex: 1 }}>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
+      <View style={styles.login}>
       <TouchableOpacity onPress={fbAuth.bind(this)}>
      <Text>Login with Facebook</Text>
      </TouchableOpacity>

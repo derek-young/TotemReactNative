@@ -14,9 +14,15 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 40,
     textAlign: 'center',
     margin: 10,
+  },
+  login: {
+    marginTop: 250,
+    height: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   instructions: {
     textAlign: 'center',
