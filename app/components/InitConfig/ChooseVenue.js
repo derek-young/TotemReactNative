@@ -22,35 +22,36 @@ class ChooseVenue extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
-      <View style={styles.main}>
-        <Text style={styles.h2}>Choose a Venue</Text>
-        <View style={localStyles.section}>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.props.dispatch(updateText(text))}
-            value={this.props.text}
-            placeholder="Search"
-          />
-        </View>
-        <ScrollView>
-          {/* Need to sort venues by proximity to user and display in that order*/}
-          {this.props.venues.map((venue, index) => {
-            const searchValue = this.props.text.toLowerCase();
+      <View style={{ flex: 1}}>
+        <View style={styles.main}>
+          <Text style={styles.h2}>Choose a Venue</Text>
+          <View style={localStyles.section}>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.props.dispatch(updateText(text))}
+              value={this.props.text}
+              placeholder="Search"
+            />
+          </View>
+          <ScrollView>
+            {/* Need to sort venues by proximity to user and display in that order*/}
+            {this.props.venues.map((venue, index) => {
+              const searchValue = this.props.text.toLowerCase();
 
-            if(searchValue.length === 0) {
-              return (
-                <Venue key={index} venue={venue} select={this.select.bind(this)}/>
-              );
-            }
-            if(venue.name.toLowerCase().indexOf(searchValue) >= 0) {
-              return (
-                <Venue key={index} venue={venue} select={this.select.bind(this)}/>
-              );
-            }
-          })}
-        </ScrollView>
+              if(searchValue.length === 0) {
+                return (
+                  <Venue key={index} venue={venue} select={this.select.bind(this)}/>
+                );
+              }
+              if(venue.name.toLowerCase().indexOf(searchValue) >= 0) {
+                return (
+                  <Venue key={index} venue={venue} select={this.select.bind(this)}/>
+                );
+              }
+            })}
+          </ScrollView>
+        </View>
         <View style={{ marginBottom: 10 }}>
           <Button
             style={localStyles.fixedBottom}
