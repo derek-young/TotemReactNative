@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { Text, View, TextInput } from 'react-native';
 import ButtonFull from '../common/ButtonFull';
 import styles from '../../styles';
 import store from '../../store';
@@ -8,13 +8,7 @@ import firebase from '../../firebase';
 import Dimensions from 'Dimensions'
 
 export default class CreateGroup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: ''
-    };
-  }
-
+  
   createGroup() {
     const url = store.getState().app.api_url;
     const userFbId = store.getState().app.userFbId;
@@ -37,7 +31,7 @@ export default class CreateGroup extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <View style={StyleSheet.flatten([styles.main, { justifyContent: 'center' }])}>
+        <View style={styles.main}>
           <Text style={styles.textMed}>
             Please enter a group name
           </Text>

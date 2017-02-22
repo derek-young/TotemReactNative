@@ -22,7 +22,7 @@ class App extends React.Component {
   }
 
   render() {
-    switch (this.props.loggedIn) {
+    switch (true) {
       case true: return (
           <Router>
             <View style={styles.container}>
