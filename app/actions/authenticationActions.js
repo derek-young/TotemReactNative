@@ -42,9 +42,9 @@ export const loginUser = ({ email, password }) => {
 };
 
 export const fbAuth = () => {
-    var context = this;
     LoginManager.logInWithReadPermissions(['public_profile']).then(function(result){
-        context.setState({isLoggedIn: true})
+        //context.setState({isLoggedIn: true})
+        //refactor to redux
       if(result.isCancelled) {
         console.log('Log in cancelled')
       } else {
@@ -52,15 +52,21 @@ export const fbAuth = () => {
         AccessToken.getCurrentAccessToken().then(
         (data) => {
           let accessToken = data.accessToken
-          console.log('TOKEN', accessToken.toString())
+          //console.log('TOKEN', accessToken.toString())
 
           const responseInfoCallback = (error, result) => {
             if(error) {
               console.log('Error fetching data :', error.toString())
             } else {
               console.log('Success fetching data : ', result)
+              let fbID = result.id;
+              console.log('fbID', fbID)
+              //CHECK
+              dispatch({type: 'login_user_success'})
+              //call to the store to change state with returned data
             }
           }
+
           const infoRequest = new GraphRequest(
             '/me',
             {

@@ -9,15 +9,9 @@ const Manager = require('react-native').NativeModules;
 const BatchedBridge = require('BatchedBridge');
 
 export default class Rabble extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      isLoggedIn: false
-    }
-  }
 
   render() {
-    if(this.state.isLoggedIn === false) {
+    if(this.state.loggedIn === false) {
     return (
       <View style={styles.login}>
       <TouchableOpacity onPress={fbAuth.bind(this)}>
