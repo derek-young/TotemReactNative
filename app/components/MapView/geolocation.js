@@ -2,6 +2,7 @@ import firebase from "firebase";
 
 export function geolocate() {
   function success(pos) {
+    console.log(pos.coords);
     const user = firebase.auth().currentUser
       firebase.database().ref(`users/${user.uid}/coordinates`).set({
         latitude: pos.coords.latitude,
@@ -27,8 +28,8 @@ export function updateLocation() {
   const user = firebase.auth().currentUser
   return (dispatch) => {
     firebase.database().ref().child('users')
-      .on('value', snapshot => { console.log(snapshot.val())
-        // dispatch({ type: 'updating_location', payload: snapshot.val() });
+      .on('value', snapshot => { //console.log(snapshot.val())
+         dispatch({ type: 'updating_location', payload: snapshot.val() });
       });
   };
 };

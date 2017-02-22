@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import styles from '../../styles';
-import localStyles from './ChooseVenueStyles';
+import localStyles from './ConfigStyles';
 
 export default ({ venue, select }) => (
   <TouchableOpacity

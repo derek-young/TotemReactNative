@@ -1,7 +1,7 @@
-const defaults = { 
+const defaults = {
   email: '',
   password: '',
-  user: null,
+  user: { uid: null },
   error: '',
   loading: false,
   loggedIn: false,

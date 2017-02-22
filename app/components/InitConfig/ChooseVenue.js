@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Alert, Button, ScrollView, Text, TextInput, View } from 'react-native';
 import Venue from './Venue';
 import styles from '../../styles';
-import localStyles from './ChooseVenueStyles';
+import localStyles from './ConfigStyles';
 import { updateText, selectVenue } from '../../actions/venueActions';
 
 class ChooseVenue extends Component {
