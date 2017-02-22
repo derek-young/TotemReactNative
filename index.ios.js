@@ -11,7 +11,7 @@ const BatchedBridge = require('BatchedBridge');
 export default class Rabble extends React.Component {
 
   render() {
-    if(this.state.loggedIn === false) {
+    // if(this.getState.loggedIn === false) {
     return (
       <View style={styles.login}>
       <TouchableOpacity onPress={fbAuth.bind(this)}>
@@ -19,8 +19,8 @@ export default class Rabble extends React.Component {
      </TouchableOpacity>
       </View>
     );
-  }
-  else {
+ // }
+  //else {
     return(
     <View style={{ flex: 1 }}>
       <Provider store={store}>
@@ -28,7 +28,7 @@ export default class Rabble extends React.Component {
       </Provider>
     </View>
     )
-  }
+  //}
   }
 }
 

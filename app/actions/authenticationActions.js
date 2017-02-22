@@ -41,7 +41,7 @@ export const loginUser = ({ email, password }) => {
   };
 };
 
-export const fbAuth = () => {
+export const fbAuth = (dispatch) => {
     LoginManager.logInWithReadPermissions(['public_profile']).then(function(result){
         //context.setState({isLoggedIn: true})
         //refactor to redux
@@ -63,7 +63,21 @@ export const fbAuth = () => {
               console.log('fbID', fbID)
               //CHECK
               dispatch({type: 'login_user_success'})
-              //call to the store to change state with returned data
+              let credential = firebase.auth.FacebookAuthProvider.credential(accessToken)
+              firebase.auth().signInWithCredentials(credential)
+                .then(user => loginUserSuccess(dispatch, user))
+            //     .then(() => geolocate())
+            //     .then(
+
+            //     firebase.database().ref().child('users')
+            //       .on('value', snapshot => { //console.log(snapshot.val())
+            //          dispatch({ type: 'updating_location', payload: snapshot.val() });
+            //       }))
+
+
+            //     .catch((error) => {
+            //       console.log(error);
+            // })
             }
           }
 
