@@ -25,8 +25,29 @@ export default class Rabble extends React.Component {
         AccessToken.getCurrentAccessToken().then(
         (data) => {
           let accessToken = data.accessToken
-          console.log('TOKEN')
-          console.log(accessToken.toString())
+          console.log('TOKEN', accessToken.toString())
+
+          const responseInfoCallback = (error, result) => {
+            if(error) {
+              console.log('Error fetching data :', error.toString())
+            } else {
+              console.log('Success fetching data : ', result)
+            }
+          }
+          const infoRequest = new GraphRequest(
+            '/me',
+            {
+              accessToken: accessToken,
+              parameters: {
+                fields: {
+                  string: 'taggable_friends'
+                }
+              }
+            },
+            responseInfoCallback
+          );
+          new GraphRequestManager().addRequest(infoRequest).start()
+        //TOKEN  
         })
       }
     }, function(error){
