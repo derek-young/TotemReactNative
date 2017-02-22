@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
-import { getGeofence } from '../../actions/groupActions'
+import { getGeofence } from '../../actions/locationActions'
 import store from '../../store';
 import styles from '../../styles';
 import localStyles from './GroupStyles';
