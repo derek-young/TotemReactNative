@@ -18,23 +18,22 @@ export default class Rabble extends React.Component {
 
   render() {
     if(this.state.isLoggedIn === false) {
-    return (
-      <View style={styles.login}>
-        <TouchableOpacity onPress={fbAuth.bind(this)}>
-        <Text>Login with Facebook</Text>
-        </TouchableOpacity>
+      return (
+        <View style={styles.login}>
+          <TouchableOpacity onPress={fbAuth.bind(this)}>
+          <Text>Login with Facebook</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      return(
+      <View style={{ flex: 1 }}>
+        <Provider store={store}>
+          <App />
+        </Provider>
       </View>
-    );
-  }
-  else {
-    return(
-    <View style={{ flex: 1 }}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </View>
-    )
-  }
+      )
+    }
   }
 }
 
