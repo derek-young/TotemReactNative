@@ -11,18 +11,12 @@ import NavMenu from './components/Nav/NavMenu';
 import MapViewer from './components/MapView/MapView';
 import Group from './components/Group/Group';
 import VenueSchedule from './components/VenueSchedule/VenueSchedule';
-import InviteFriends from './components/InviteFriends/InviteFriends';
-import CreateGroup from './components/CreateGroup/CreateGroup';
-import ChooseVenue from './components/ChooseVenue/ChooseVenue';
+import InviteFriends from './components/InitConfig/InviteFriends';
+import CreateGroup from './components/InitConfig/CreateGroup';
+import ChooseVenue from './components/InitConfig/ChooseVenue';
 import LoginForm from './components/Auth/LoginForm';
 
 class App extends React.Component {
-
-  componentDidMount() {
-
-  }
-
-
   componentWillUnmount() {
     navigator.geolocation.clearWatch();
   }
