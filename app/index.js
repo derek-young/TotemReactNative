@@ -28,6 +28,7 @@ class App extends React.Component {
         this.setState({ loggedIn: false });
       }
     });
+  }
 
     // firebase.auth().signOut() //comment this out if you're sick of logging in
 
@@ -36,9 +37,9 @@ class App extends React.Component {
   // }
 
 
-  componentWillUnmount() {
-    navigator.geolocation.clearWatch();
-  }
+  // componentWillUnmount() {
+  //   navigator.geolocation.clearWatch();
+  // }
 
   render() {
     switch (this.props.loggedIn) {
