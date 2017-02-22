@@ -16,6 +16,25 @@ import InviteFriends from './components/InitConfig/InviteFriends';
 import CreateGroup from './components/InitConfig/CreateGroup';
 
 class App extends React.Component {
+
+  state = { loggedIn: null };
+  componentWillMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ loggedIn: true });
+        geolocation();
+      } else {
+        this.setState({ loggedIn: false });
+      }
+    });
+  }
+
+    // firebase.auth().signOut() //comment this out if you're sick of logging in
+
+  // componentDidMount() {
+
+  // }
+
   componentWillUnmount() {
     navigator.geolocation.clearWatch();
   }

@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { geolocate, updateLocation } from '../components/MapView/geolocation'
+import FBSDK, { LoginManager, AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 export const emailChanged = (text) => {
   return {
     type: 'email_changed',
@@ -39,6 +40,46 @@ export const loginUser = ({ email, password }) => {
       });
   };
 };
+
+export const fbAuth = () => {
+    var context = this;
+    LoginManager.logInWithReadPermissions(['public_profile']).then(function(result){
+        context.setState({isLoggedIn: true})
+      if(result.isCancelled) {
+        console.log('Log in cancelled')
+      } else {
+        console.log('Login Successful')
+        AccessToken.getCurrentAccessToken().then(
+        (data) => {
+          let accessToken = data.accessToken
+          console.log('TOKEN', accessToken.toString())
+
+          const responseInfoCallback = (error, result) => {
+            if(error) {
+              console.log('Error fetching data :', error.toString())
+            } else {
+              console.log('Success fetching data : ', result)
+            }
+          }
+          const infoRequest = new GraphRequest(
+            '/me',
+            {
+              accessToken: accessToken,
+              parameters: {
+                fields: {
+                  string: 'id'
+                }
+              }
+            },
+            responseInfoCallback
+          );
+          new GraphRequestManager().addRequest(infoRequest).start()  
+        })
+      }
+    }, function(error){
+      console.log('Error signing in', error);
+  })
+}
 
 const loginUserFail = (dispatch) => {
   dispatch({ type: 'login_user_fail' });
