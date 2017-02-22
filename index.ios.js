@@ -3,7 +3,9 @@ import { AppRegistry, View, Text, TouchableOpacity } from 'react-native';
 import { Provider } from 'react-redux';
 import App from './app/index';
 import store from './app/store.js';
-import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk';
+import FBSDK, { LoginManager, AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
+const Manager = require('react-native').NativeModules;
+const BatchedBridge = require('BatchedBridge');
 
 export default class Rabble extends React.Component {
   constructor(props){
@@ -20,7 +22,12 @@ export default class Rabble extends React.Component {
         console.log('Log in cancelled')
       } else {
         console.log('Login Successful')
-        //AccessToken.getCurrentAccessToken().then
+        AccessToken.getCurrentAccessToken().then(
+        (data) => {
+          let accessToken = data.accessToken
+          console.log('TOKEN')
+          console.log(accessToken.toString())
+        })
       }
     }, function(error){
       console.log('Error signing in', error);
@@ -51,12 +58,9 @@ export default class Rabble extends React.Component {
       </Provider>
     </View>
     )
-
   }
   }
 }
-
-
 
 function fn(){for(var _len=arguments.length,args=Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}
   return new Promise(function(resolve,reject){
