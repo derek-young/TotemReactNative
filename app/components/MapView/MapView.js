@@ -11,7 +11,6 @@ class MapViewer extends React.Component {
       const name = this.props.users[userID].name;
       const lat = this.props.users[userID].coordinates.latitude;
       const long = this.props.users[userID].coordinates.longitude;
-      console.log(name, lat, long);
     }
     return (
       <View>
@@ -33,6 +32,13 @@ class MapViewer extends React.Component {
             description={"Land's End"}
           />
         </MapView>
+        <MapView.Circle
+          center = {{
+            latitude: 37.76766,
+            longitude: -122.49479
+          }}
+          radius={50}
+        />
       </View>
     );
   }

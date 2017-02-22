@@ -18,7 +18,6 @@ const GroupView = ({ dispatch, users, userId }) => (
     })}
     <ScrollView>
       {users.map((friend, index) => {
-        console.log(friend);
         if (friend.fb_id !== userId) {
           return (
             <UserRow key={index} friend={friend} />
