@@ -31,7 +31,7 @@ export const loginUser = ({ email, password }) => {
   };
 };
 
-export const fbAuth = (dispatch) => {
+export const fbAuth = () => {
     LoginManager.logInWithReadPermissions(['public_profile']).then(function(result){
         //context.setState({isLoggedIn: true})
         //refactor to redux
@@ -44,12 +44,12 @@ export const fbAuth = (dispatch) => {
           let accessToken = data.accessToken
           //console.log('TOKEN', accessToken.toString())
 
-          const responseInfoCallback = (error, result) => {
+          const responseInfoCallback = (error, res, dispatch) => {
             if(error) {
               console.log('Error fetching data :', error.toString())
             } else {
-              console.log('Success fetching data : ', result)
-              let fbID = result.id;
+              console.log('Success fetching data : ', res)
+              let fbID = res.id;
               console.log('fbID', fbID)
               //CHECK
               dispatch({type: 'login_user_success'})
@@ -91,6 +91,9 @@ export const fbAuth = (dispatch) => {
   })
 }
 
+const loginTrue = (dispatch) => {
+  dispatch({})
+}
 const loginUserFail = (dispatch) => {
   dispatch({ type: 'login_user_fail' });
 };

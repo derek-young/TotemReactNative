@@ -27,7 +27,7 @@ export default class Rabble extends React.Component {
     //   <App />
     //   </Provider>
     // </View>
-    )
+    //)
   //}
   }
 }
