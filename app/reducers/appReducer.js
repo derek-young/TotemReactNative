@@ -1,6 +1,6 @@
 const defaults = {
   api_url: 'http://localhost:8000',
-  userFbId: '444der',
+  userFbId: 'aiRJiwP8s6USzeNQXKNp21Q8Hjc2',
   venueId: '',
   groupId: ''
 };
