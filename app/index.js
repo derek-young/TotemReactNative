@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Route, MemoryRouter as Router } from 'react-router';
 import store from './store.js';
 import styles from './styles';
-import geolocation from './components/MapView/geolocation'
 
 /*  Components  */
 import NavMenu from './components/Nav/NavMenu';
@@ -30,7 +29,7 @@ class App extends React.Component {
             <Group
               dispatch={this.props.dispatch}
               users={this.props.location.users}
-              userFbId={this.props.app.fbId}
+              userID={this.props.app.userFbId}
             />
           )}/>
           <Route path="/agenda" component={() => <View><Text>User Schedule Holder</Text></View>}/>
