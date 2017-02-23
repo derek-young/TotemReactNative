@@ -5,20 +5,22 @@ import SortGroup from './SortGroup';
 import store from '../../store';
 import ButtonFull from '../common/ButtonFull';
 
-const GroupView = ({ dispatch, users, userId }) => (
+const GroupView = ({ dispatch, users, userID }) => (
   <View style={{ flex: 1 }}>
     <SortGroup dispatch={dispatch}/>
-    {users.map((friend, index) => {
+    {Object.keys(users).map((userKey, index) => {
       //Anchor current user info at top of view
-      if (friend.fb_id === userId) {
+      const friend = users[userKey];
+      if (userKey === userID) {
         return (
           <UserRow key={index} friend={friend} />
         );
       }
     })}
     <ScrollView>
-      {users.map((friend, index) => {
-        if (friend.fb_id !== userId) {
+      {Object.keys(users).map((userKey, index) => {
+        const friend = users[userKey];
+        if (userKey !== userID) {
           return (
             <UserRow key={index} friend={friend} />
           );

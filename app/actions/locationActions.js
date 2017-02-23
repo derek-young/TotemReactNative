@@ -1,4 +1,3 @@
-import updateLocation from '../components/MapView/geolocation';
 import firebase from '../firebase';
 
 export function sortUsers(method) {
