@@ -44,15 +44,16 @@ export const fbAuth = () => {
         (data) => {
           let accessToken = data.accessToken
           //console.log('TOKEN', accessToken.toString())
-
           const responseInfoCallback = (error, res) => {
             if(error) {
               console.log('Error fetching data :', error.toString())
             } else {
               console.log('Success fetching data : ', res)
               let fbID = res.id;
-              console.log('fbID', fbID)
+              let picture = res.picture.data.url;
+              console.log('fbID', res.picture.data.url)
               //CHECK
+              store.dispatch({type: 'picture_received', payload: picture})
               store.dispatch({type: 'login_user_success'})
 
               let credential = firebase.auth.FacebookAuthProvider.credential(accessToken)
@@ -75,7 +76,7 @@ export const fbAuth = () => {
               accessToken: accessToken,
               parameters: {
                 fields: {
-                  string: 'id'
+                  string: 'id,picture'
                 }
               }
             },
@@ -88,6 +89,9 @@ export const fbAuth = () => {
       console.log('Error signing in', error);
   })
 }
+
+// export const getFriends
+
 
 const loginUserFail = (dispatch) => {
   dispatch({ type: 'login_user_fail' });

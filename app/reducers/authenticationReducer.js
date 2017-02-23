@@ -4,6 +4,7 @@ const defaults = {
   error: '',
   loading: false,
   loggedIn: false,
+  picture: null,
 };
 
 export default (state = defaults, action) => {
@@ -12,6 +13,8 @@ export default (state = defaults, action) => {
       return { ...state, email: action.payload };
     case 'password_changed':
       return { ...state, password: action.payload };
+    case 'picture_received' :
+      return { ...state, picture: action.payload };
     case 'login_user':
       return { ...state, loading: true, error: '' };
     case 'login_user_success':
