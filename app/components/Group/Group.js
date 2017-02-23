@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, View } from 'react-native';
-import UserRow from './UserRow';
+//import UserRow from './UserRow';
 import SortGroup from './SortGroup';
 import store from '../../store';
 import ButtonFull from '../common/ButtonFull';

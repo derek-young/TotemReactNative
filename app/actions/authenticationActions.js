@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { geolocate, getGroupLoc, updatedUsers } from '../actions/locationActions';
+import store from '../store.js'
 import FBSDK, { LoginManager, AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 export const emailChanged = (text) => {
   return {
@@ -44,7 +45,7 @@ export const fbAuth = () => {
           let accessToken = data.accessToken
           //console.log('TOKEN', accessToken.toString())
 
-          const responseInfoCallback = (error, res, dispatch) => {
+          const responseInfoCallback = (error, res) => {
             if(error) {
               console.log('Error fetching data :', error.toString())
             } else {
@@ -52,25 +53,22 @@ export const fbAuth = () => {
               let fbID = res.id;
               console.log('fbID', fbID)
               //CHECK
-              dispatch({type: 'login_user_success'})
+              store.dispatch({type: 'login_user_success'})
+
               let credential = firebase.auth.FacebookAuthProvider.credential(accessToken)
-              firebase.auth().signInWithCredentials(credential)
-                .then(user => loginUserSuccess(dispatch, user))
-            //     .then(() => geolocate())
-            //     .then(
 
-            //     firebase.database().ref().child('users')
-            //       .on('value', snapshot => { //console.log(snapshot.val())
-            //          dispatch({ type: 'updating_location', payload: snapshot.val() });
-            //       }))
-
-
-            //     .catch((error) => {
-            //       console.log(error);
-            // })
+              return(dispatch) => {
+               firebase.auth().signInWithEmailAndPassword(email, password)
+              .then(user => loginUserSuccess(dispatch, user))
+              .then(geolocate)
+              .then(getGroupLoc)
+              .then((users) => dispatch(updateUsers(users)))
+              .catch((error) => {
+                console.log(error);
+              });
             }
           }
-
+        }
           const infoRequest = new GraphRequest(
             '/me',
             {
@@ -91,9 +89,6 @@ export const fbAuth = () => {
   })
 }
 
-const loginTrue = (dispatch) => {
-  dispatch({})
-}
 const loginUserFail = (dispatch) => {
   dispatch({ type: 'login_user_fail' });
 };

@@ -5,7 +5,7 @@ import store from '../../store';
 import styles from '../../styles';
 import localStyles from './GroupStyles';
 
-const GroupRow = ({ friend }) => {
+const UserRow = ({ friend }) => {
   const geoFences = store.getState().location.geoFences;
   return (
     <View>
@@ -23,4 +23,4 @@ const GroupRow = ({ friend }) => {
   );
 };
 
-export default GroupRow;
+export default UserRow;
